@@ -1,11 +1,14 @@
 package pt.isec.supraindustries.tp_amov
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+
+const val TAG = "hey"
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +21,7 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+        Log.i(TAG, "onCreate: eheh")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
