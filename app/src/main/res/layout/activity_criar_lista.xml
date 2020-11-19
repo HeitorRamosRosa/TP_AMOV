@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffe0"
+    android:orientation="vertical"
+    android:padding="32dp"
+    tools:context=".FundoSolido">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nova lista:"
+        android:textSize="24sp"/>
+
+    <EditText
+        android:id=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Nome da lista"
+        android:maxLines="1"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item a adicionar:"
+        android:textSize="24sp"/>
+
+    <EditText
+        android:id="@+id/nomeLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="20sp"
+        />
+
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#c0c0c0"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cor de fundo"
+            android:textSize="24sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R"
+                android:textColor="#ff0000"
+                android:textSize="24sp"/>
+
+            <SeekBar
+                android:id="@+id/seekRed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:max="255"
+                android:progress="202"
+                android:progressTint="#ff0000"
+                android:thumbTint="#ff0000" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="G"
+                android:textColor="#008000"
+                android:textSize="24sp"/>
+            <SeekBar
+                android:id="@+id/seekGreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:thumbTint="#008000"
+                android:progress="120"
+                android:max="255"
+                android:progressTint="#008000"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B"
+                android:textColor="#0000ff"
+                android:textSize="24sp"/>
+            <SeekBar
+                android:id="@+id/seekBlue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:thumbTint="#0000ff"
+                android:progress="56"
+                android:max="255"
+                android:progressTint="#0000ff"
+                />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/frPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#e0a020"
+            android:layout_margin="16dp"
+            />
+    </LinearLayout>
+</LinearLayout>
