@@ -7,7 +7,7 @@
     android:background="#ffffe0"
     android:orientation="vertical"
     android:padding="32dp"
-    tools:context=".FundoSolido">
+    tools:context=".CriarListaActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,7 +16,7 @@
         android:textSize="24sp"/>
 
     <EditText
-        android:id=""
+        android:id="@+id/nomeLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Nome da lista"
@@ -27,106 +27,45 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Item a adicionar:"
+        android:text="Item a adicionar:             Qt:"
         android:textSize="24sp"/>
-
-    <EditText
-        android:id="@+id/nomeLista"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:textSize="20sp"
-        />
 
     <LinearLayout
         android:padding="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#c0c0c0"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="16dp"
         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cor de fundo"
-            android:textSize="24sp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="R"
-                android:textColor="#ff0000"
-                android:textSize="24sp"/>
 
-            <SeekBar
-                android:id="@+id/seekRed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:max="255"
-                android:progress="202"
-                android:progressTint="#ff0000"
-                android:thumbTint="#ff0000" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Spinner
+            android:id="@+id/itemsExistentes"
+            android:layout_width="120sp"
             android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="G"
-                android:textColor="#008000"
-                android:textSize="24sp"/>
-            <SeekBar
-                android:id="@+id/seekGreen"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:thumbTint="#008000"
-                android:progress="120"
-                android:max="255"
-                android:progressTint="#008000"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="B"
-                android:textColor="#0000ff"
-                android:textSize="24sp"/>
-            <SeekBar
-                android:id="@+id/seekBlue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:thumbTint="#0000ff"
-                android:progress="56"
-                android:max="255"
-                android:progressTint="#0000ff"
-                />
-        </LinearLayout>
+            android:textSize="24sp"
+            android:padding="20sp"/>
 
-        <FrameLayout
-            android:id="@+id/frPreview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#e0a020"
-            android:layout_margin="16dp"
+        <EditText
+            android:id="@+id/quantidade"
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:layout_gravity="right"
+            android:padding="20sp"
             />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Items na lista:"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/itemsListados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"/>
+
 </LinearLayout>

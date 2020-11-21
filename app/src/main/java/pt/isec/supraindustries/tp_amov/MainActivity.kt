@@ -1,5 +1,6 @@
 package pt.isec.supraindustries.tp_amov
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -7,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 
 const val TAG = "hey"
 
@@ -40,5 +42,10 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun onCriarLista(view: View){
+        val intent = Intent(this,CriarListaActivity::class.java)
+        startActivity(intent)
     }
 }

@@ -2,22 +2,45 @@ package pt.isec.supraindustries.tp_amov
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class CriarListaActivity : AppCompatActivity() {
+
+    lateinit var option : Spinner
+    lateinit var result : TextView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.i(TAG, "here here ")
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_area_desenho)
+        Log.i(TAG, "here here ")
+        setContentView(R.layout.activity_criar_lista)
+        Log.i(TAG, "here here ")
+        option = findViewById(R.id.itemsExistentes) as Spinner
+        result = findViewById(R.id.itemsListados) as TextView
+        Log.i(TAG, "here here ")
+        var options = arrayOf("");
 
-        val strTitulo = intent.getStringExtra("titulo") ?: "Unnamed"
-        val red = intent.getIntExtra("red",0)
-        val green = intent.getIntExtra("green",0)
-        val blue = intent.getIntExtra("blue",0)
+        option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
 
-        supportActionBar?.title = strTitulo
+        option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
 
-        findViewById<View>(android.R.id.content).setBackgroundColor(Color.rgb(red,green,blue))
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                result.text = options.toString()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                result.text = "Please select an item."
+            }
+
+        }
 
 
     }

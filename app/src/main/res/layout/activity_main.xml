@@ -23,7 +23,7 @@
             android:text="criar lista"
             android:textSize="24sp"
             android:padding="24dp"
-            android:onClick="onFundoSolido"
+            android:onClick="onCriarLista"
             />
         <Button
             android:layout_marginTop="4dp"
