@@ -1,5 +1,6 @@
 package pt.isec.supraindustries.tp_amov
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -32,16 +33,17 @@ class CriarListaActivity : AppCompatActivity() {
         option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
                 result.text = options.toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 result.text = "Please select an item."
             }
-
         }
+    }
 
-
+    fun onCriarProduto(view: View){
+        val intent = Intent(this,CriarProdutoActivity::class.java)
+        startActivity(intent)
     }
 }

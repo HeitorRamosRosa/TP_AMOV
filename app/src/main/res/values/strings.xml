@@ -9,8 +9,21 @@
 
     <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
     <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+
+    <string name="tvCreateList">Create List</string>
+    <string name="tvShowLists">Show Lists</string>
+    <string name="tvEditProducts">Edit Products</string>
+    <string name="tvEditUnits">Edit Units</string>
+    <string name="tvEditCategories">Edit Categories</string>
+
     <string name="listNew">New List</string>
     <string name="listName">List Name</string>
     <string name="buttonAdd">Add Item</string>
     <string name="buttonCreate">Create Product</string>
+
+    <string name="tvProductCreate">Create a Product</string>
+    <string name="tvProductName">Product Name:</string>
+    <string name="tvProductBrand">Product Brand:</string>
+    <string name="etMandatory">Mandatory</string>
+    <string name="etOptional">Optional</string>
 </resources>
