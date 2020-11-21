@@ -12,23 +12,43 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nova lista:"
+        android:text="@string/listNew"
         android:textSize="24sp"/>
 
     <EditText
         android:id="@+id/nomeLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Nome da lista"
+        android:hint="@string/listName"
         android:maxLines="1"
         android:textSize="20sp"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Item a adicionar:             Qt:"
-        android:textSize="24sp"/>
+        android:id="@+id/constraintL1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvQtAdd"
+            app:layout_constraintTop_toTopOf="@id/constraintL1"
+            app:layout_constraintLeft_toLeftOf="@+id/constraintL1"
+            android:text="Item:"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qt"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toRightOf="@id/tvQtAdd"
+            app:layout_constraintTop_toTopOf="@+id/constraintL1"
+            android:layout_marginLeft="85sp"
+            />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <LinearLayout
         android:padding="8dp"
@@ -47,6 +67,7 @@
 
         <EditText
             android:id="@+id/quantidade"
+            android:inputType="number"
             android:layout_width="120sp"
             android:layout_height="wrap_content"
             android:maxLines="1"
@@ -56,11 +77,33 @@
             />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonAdd"
+            android:layout_weight="1"
+            android:layout_margin="5sp"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonCreate"
+            android:layout_weight="1"
+            android:layout_margin="5sp"/>
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Items na lista:"
         android:textSize="24sp"/>
+
 
     <TextView
         android:id="@+id/itemsListados"

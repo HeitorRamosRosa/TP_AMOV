@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="listNew">Nova Lista</string>
+    <string name="listName">"Nome da Lista "</string>
+    <string name="buttonAdd">Adicionar</string>
+    <string name="buttonCreate">Criar Produto</string>
+</resources>
