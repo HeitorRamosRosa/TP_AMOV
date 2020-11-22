@@ -27,6 +27,8 @@
     <string name="tvProductUnit">Unit</string>
     <string name="tvProductPrice">Price</string>
     <string name="tvProductNotes">Notes</string>
+    <string name="tvProductImage">Imagem</string>
+
     <string name="etMandatory">Mandatory</string>
     <string name="etOptional">Optional</string>
 </resources>
