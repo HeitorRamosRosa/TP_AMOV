@@ -58,14 +58,14 @@
         >
 
         <Spinner
-            android:id="@+id/itemsExistentes"
+            android:id="@+id/sItemUnit"
             android:layout_width="120sp"
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:padding="20sp"/>
 
         <EditText
-            android:id="@+id/quantidade"
+            android:id="@+id/eItemQuantity"
             android:inputType="number"
             android:layout_width="120sp"
             android:layout_height="wrap_content"

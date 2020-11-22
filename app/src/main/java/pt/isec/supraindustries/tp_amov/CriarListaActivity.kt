@@ -23,7 +23,7 @@ class CriarListaActivity : AppCompatActivity() {
         Log.i(TAG, "here here ")
         setContentView(R.layout.activity_criar_lista)
         Log.i(TAG, "here here ")
-        option = findViewById(R.id.itemsExistentes) as Spinner
+        option = findViewById(R.id.sItemUnit) as Spinner
         result = findViewById(R.id.itemsListados) as TextView
         Log.i(TAG, "here here ")
         var options = arrayOf("");

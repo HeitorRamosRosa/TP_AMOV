@@ -24,6 +24,9 @@
     <string name="tvProductCreate">Create a Product</string>
     <string name="tvProductName">Product Name:</string>
     <string name="tvProductBrand">Product Brand:</string>
+    <string name="tvProductUnit">Unit</string>
+    <string name="tvProductPrice">Price</string>
+    <string name="tvProductNotes">Notes</string>
     <string name="etMandatory">Mandatory</string>
     <string name="etOptional">Optional</string>
 </resources>
