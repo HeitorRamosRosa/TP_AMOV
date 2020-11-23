@@ -101,7 +101,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Items na lista:"
+        android:text="@string/tvItemsInList"
         android:textSize="24sp"/>
 
 
