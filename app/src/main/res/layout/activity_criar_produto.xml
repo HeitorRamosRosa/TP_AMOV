@@ -165,7 +165,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vert"
+            android:orientation="horizontal"
             android:layout_weight="2">
             <TextView
                 android:layout_width="wrap_content"
@@ -176,7 +176,11 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/add_image_symbol"/>
+                android:src="@drawable/add_image_symbol"
+                android:background="@drawable/insertimagebackground"
+                android:layout_margin="6sp"
+
+                />
         </LinearLayout>
     </LinearLayout>
 
