@@ -1,4 +1,4 @@
-package pt.isec.supraindustries.tp_amov
+package pt.isec.supraindustries.tp_amov.oldfiles
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import pt.isec.supraindustries.tp_amov.R
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

@@ -40,6 +40,7 @@
     <string name="tvUnitName">Unit Name:</string>
     <string name="tvUnitSymbol">Unit Symbol:</string>
     <string name="bCreateProduct">Create Product</string>
+    <string name="tvCreatedUnits">Created Units:</string>
 
     <string name="etMandatory">Mandatory</string>
     <string name="etOptional">Optional</string>

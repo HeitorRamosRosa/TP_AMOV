@@ -5,4 +5,27 @@
     <string name="buttonAdd">Adicionar</string>
     <string name="buttonCreate">Criar Produto</string>
     <string name="availableLists">Listas disponíveis:</string>
+    <string name="tvCreateList">Criar Lista</string>
+    <string name="tvShowLists">Mostrar Listas</string>
+    <string name="tvEditProducts">Editar Produtos</string>
+    <string name="tvEditUnits">Editar Unidades</string>
+    <string name="tvEditCategories">Editar Categorias</string>
+    <string name="tvItemsInList">Itens na Lista:</string>
+    <string name="tvProductCreate">Criar Produto</string>
+    <string name="tvProductName">Nome do Produto:</string>
+    <string name="tvProductBrand">Marca do Produto:</string>
+    <string name="tvProductUnit">Unidade</string>
+    <string name="tvProductPrice">Preço</string>
+    <string name="tvProductNotes">Notas</string>
+    <string name="tvProductImage">Imagem</string>
+    <string name="tvCreateUnit">Criar Unidade</string>
+    <string name="tvAppName">Gestor de Listas</string>
+    <string name="tvShowList">Mostrar Lista</string>
+    <string name="tvEditProduct">Editar Produtos</string>
+    <string name="tvEdiUnits">Editar Unidades</string>
+    <string name="tvUnitName">Nome da Unidade</string>
+    <string name="tvUnitSymbol">Simbolo da Unidade</string>
+    <string name="bCreateProduct">Criar Produto</string>
+    <string name="etMandatory">Obrigatorio</string>
+    <string name="etOptional">Opcional</string>
 </resources>
