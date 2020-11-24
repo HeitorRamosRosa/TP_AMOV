@@ -20,6 +20,7 @@
     <string name="listName">List Name</string>
     <string name="buttonAdd">Add Item</string>
     <string name="buttonCreate">Create Product</string>
+    <string name="availableLists">Available Lists:</string>
     <string name="tvItemsInList">Items in list:</string>
 
     <string name="tvProductCreate">Create a Product</string>

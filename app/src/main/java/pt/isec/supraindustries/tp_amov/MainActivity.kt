@@ -49,5 +49,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-
+    fun onMostrarListas(view: View){
+        val intent = Intent(this,CriarListaActivity::class.java)
+        startActivity(intent)
+    }
 }
