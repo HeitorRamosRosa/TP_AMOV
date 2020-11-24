@@ -32,11 +32,9 @@
     <string name="tvCreateUnit">Create Unit</string>
 
     <string name="tvAppName">List Manager</string>
-    <string name="tvCreateList">Create List</string>
     <string name="tvShowList">Show List</string>
     <string name="tvEditProduct">Edit Products</string>
     <string name="tvEdiUnits">Edit Units</string>
-    <string name="tvEditCategories">Edit Categories</string>
 
     <string name="tvUnitName">Unit Name:</string>
     <string name="tvUnitSymbol">Unit Symbol:</string>
