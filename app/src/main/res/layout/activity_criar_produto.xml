@@ -179,7 +179,6 @@
                 android:src="@drawable/add_image_symbol"
                 android:background="@drawable/insertimagebackground"
                 android:layout_margin="6sp"
-
                 />
         </LinearLayout>
     </LinearLayout>
