@@ -4,4 +4,5 @@
     <string name="listName">"Nome da Lista "</string>
     <string name="buttonAdd">Adicionar</string>
     <string name="buttonCreate">Criar Produto</string>
+    <string name="availableLists">Listas disponíveis:</string>
 </resources>

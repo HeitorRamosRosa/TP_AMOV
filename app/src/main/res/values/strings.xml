@@ -20,6 +20,7 @@
     <string name="listName">List Name</string>
     <string name="buttonAdd">Add Item</string>
     <string name="buttonCreate">Create Product</string>
+    <string name="availableLists">Available Lists:</string>
     <string name="tvItemsInList">Items in list:</string>
 
     <string name="tvProductCreate">Create a Product</string>
@@ -32,11 +33,9 @@
     <string name="tvCreateUnit">Create Unit</string>
 
     <string name="tvAppName">List Manager</string>
-    <string name="tvCreateList">Create List</string>
     <string name="tvShowList">Show List</string>
     <string name="tvEditProduct">Edit Products</string>
     <string name="tvEdiUnits">Edit Units</string>
-    <string name="tvEditCategories">Edit Categories</string>
 
     <string name="tvUnitName">Unit Name:</string>
     <string name="tvUnitSymbol">Unit Symbol:</string>
