@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TP_AMOV">
-        <activity android:name=".CriarProdutoActivity"></activity>
+        <activity android:name=".Activities.CriarUnitActivity"></activity>
+        <activity android:name=".CriarProdutoActivity" />
         <activity android:name=".CriarListaActivity" />
         <activity
             android:name=".MainActivity"

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import pt.isec.supraindustries.tp_amov.Activities.CriarUnitActivity
 
 const val TAG = "hey"
 
@@ -51,6 +52,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onMostrarListas(view: View){
         val intent = Intent(this,CriarListaActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onEditarUnits(view: View){
+        val intent = Intent(this,CriarUnitActivity::class.java)
         startActivity(intent)
     }
 }

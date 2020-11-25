@@ -62,6 +62,7 @@
             android:text="@string/tvEditUnits"
             android:textSize="24sp"
             android:padding="24dp"
+            android:onClick="onEditarUnits"
             />
         <Button
             android:layout_marginTop="4dp"
