@@ -1,46 +1,26 @@
 package pt.isec.supraindustries.tp_amov
 
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import pt.isec.supraindustries.tp_amov.Data.Lista
+
 
 class MostrarListasActivity : AppCompatActivity() {
 
-    lateinit var option : Spinner
-    lateinit var result : TextView
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_criar_lista)
+        setContentView(R.layout.activity_mostar_listas)
 
-        result = findViewById(R.id.itemsListados) as TextView
-        Log.i(TAG, "here here ")
-        var options = arrayOf("");
+        val listas : ArrayList <Lista> = arrayListOf(Lista("Lista1"),Lista("Lista2"),Lista("Lista3"),Lista("Lista4"),Lista("Lista5"),)
 
-        option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        val r : RecyclerView = findViewById(R.id.itemList)
 
-        option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                result.text = options.toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                result.text = "Please select an item."
-            }
+        r.apply {
+            layoutManager = LinearLayoutManager(this@MostrarListasActivity)
+            adapter = ListAdapter(listas)
         }
     }
 
-    fun onCriarProduto(view: View){
-        val intent = Intent(this,CriarProdutoActivity::class.java)
-        startActivity(intent)
-    }
 }

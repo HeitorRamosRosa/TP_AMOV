@@ -44,6 +44,7 @@
             android:text="@string/tvShowLists"
             android:textSize="24sp"
             android:padding="24dp"
+            android:onClick="onMostrarListas"
             />
         <Button
             android:layout_marginTop="4dp"
