@@ -1,9 +1,8 @@
 package pt.isec.supraindustries.tp_amov
 
-import android.icu.number.IntegerWidth
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -25,7 +24,7 @@ class MostrarListasActivity : AppCompatActivity(),ListAdapter.OnItemClickListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mostar_listas)
+        setContentView(R.layout.activity_mostrar_listas)
 
         arrayListas = arrayListOf(Lista("Lista0"),Lista("Lista1"),Lista("Lista2"),Lista("Lista3"),Lista("Lista4"))
 
@@ -60,5 +59,7 @@ class MostrarListasActivity : AppCompatActivity(),ListAdapter.OnItemClickListene
         r.apply {
             adapter?.notifyItemChanged(pos)
         }
+        val intent = Intent(this,EditaListaActivity::class.java)
+        startActivity(intent)
     }
 }
