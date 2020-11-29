@@ -16,6 +16,7 @@
         <activity android:name=".Activities.CriarUnitActivity"></activity>
         <activity android:name=".CriarProdutoActivity" />
         <activity android:name=".CriarListaActivity" />
+        <activity android:name=".MostrarListasActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

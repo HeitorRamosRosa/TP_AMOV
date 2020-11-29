@@ -1,46 +1,48 @@
 package pt.isec.supraindustries.tp_amov
 
-import android.content.Intent
-import android.graphics.Color
+import android.icu.number.IntegerWidth
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import pt.isec.supraindustries.tp_amov.Data.Lista
+import pt.isec.supraindustries.tp_amov.Data.Produto
+
 
 class MostrarListasActivity : AppCompatActivity() {
 
-    lateinit var option : Spinner
-    lateinit var result : TextView
-
+    var produtoList: MutableList<Produto>? = null
+    lateinit var removeButton: Button
+    lateinit var arrayListas: ArrayList<Lista>
+    lateinit var removeEt: EditText
+    lateinit var r : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_criar_lista)
+        setContentView(R.layout.activity_mostar_listas)
 
-        result = findViewById(R.id.itemsListados) as TextView
-        Log.i(TAG, "here here ")
-        var options = arrayOf("");
+        arrayListas = arrayListOf(Lista("Lista1"),Lista("Lista2"),Lista("Lista3"),Lista("Lista4"),Lista("Lista5"),)
 
-        option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        r = findViewById(R.id.itemList)
+        removeButton = findViewById(R.id.removeButton)
+        removeEt = findViewById(R.id.removeEt)
 
-        option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                result.text = options.toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                result.text = "Please select an item."
-            }
+        r.apply {
+            layoutManager = LinearLayoutManager(this@MostrarListasActivity)
+            adapter = ListAdapter(arrayListas)
         }
     }
 
-    fun onCriarProduto(view: View){
-        val intent = Intent(this,CriarProdutoActivity::class.java)
-        startActivity(intent)
+    fun onRemoveButtonClicked(view: View) {
+        var pos: Int = Integer.parseInt(removeEt.text.toString())
+        arrayListas.removeAt(pos)
+        r.apply {
+            adapter?.notifyDataSetChanged()
+        }
+
     }
 }

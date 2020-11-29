@@ -18,14 +18,10 @@ class CriarListaActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.i(TAG, "here here ")
         super.onCreate(savedInstanceState)
-        Log.i(TAG, "here here ")
         setContentView(R.layout.activity_criar_lista)
-        Log.i(TAG, "here here ")
         option = findViewById(R.id.sItemUnit) as Spinner
         result = findViewById(R.id.itemsListados) as TextView
-        Log.i(TAG, "here here ")
         var options = arrayOf("");
 
         option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
