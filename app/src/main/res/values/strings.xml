@@ -49,4 +49,5 @@
     <string name="bCreateUnit">Create Unit</string>
     <string name="unit_name">Unit Name: </string>
     <string name="Unit_Symbol">Unit Symbol:</string>
+    <string name="save">Save</string>
 </resources>

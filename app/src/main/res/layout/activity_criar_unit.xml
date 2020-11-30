@@ -81,6 +81,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <TextView
@@ -98,4 +99,11 @@
 
     </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:textSize="12sp"
+        android:layout_margin="12sp"
+        android:onClick="Save"/>
 </LinearLayout>

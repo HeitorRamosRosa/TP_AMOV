@@ -1,6 +1,8 @@
 package pt.isec.supraindustries.tp_amov.Activities
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,12 +16,26 @@ import pt.isec.supraindustries.tp_amov.R
 const val TAG = "INFOTAG"
 class CriarUnitActivity : AppCompatActivity() {
 
-    var unitList = ArrayList<Unidade>(0)
+    lateinit var unitList :  ArrayList<Unidade>
+
+    override fun onResume() {
+        super.onResume()
+
+        val intent = this.intent
+        unitList = intent.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
+
+        Log.i(pt.isec.supraindustries.tp_amov.TAG, "onResume: CriarUnitAcitivty")
+        Log.i(pt.isec.supraindustries.tp_amov.TAG, "UnitListSize: ${unitList.size}")
+    }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_unit)
+
+        val intent = this.intent
+        unitList = intent.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
 
         Log.i(pt.isec.supraindustries.tp_amov.TAG, "onCreate: CriarUnitAcitivty")
         Log.i(pt.isec.supraindustries.tp_amov.TAG, "UnitListSize: ${unitList.size}")
@@ -28,11 +44,18 @@ class CriarUnitActivity : AppCompatActivity() {
         val temp = Unidade ("testUnidade","%")
         unitList.add(temp)
 
+        Log.i(pt.isec.supraindustries.tp_amov.TAG, "UnitListSize: ${unitList.size}")
+
         val listview = findViewById<ListView>(R.id.cu_UnitList)
         listview.adapter = unitsAdatper(unitList, this)
     }
 
-
+    fun Save(view: View){
+        val returnIntent = Intent ()
+        returnIntent.putExtra("listaUnidades",unitList)
+        setResult(Activity.RESULT_OK,returnIntent)
+        finish()
+    }
 
     fun criaUnidade(view: View)
     {
@@ -50,6 +73,8 @@ class CriarUnitActivity : AppCompatActivity() {
 
         val listview = findViewById<ListView>(R.id.cu_UnitList)
         listview.adapter = unitsAdatper(unitList, this)
+
+        Log.i("DEBUG_CriUnitAct_criaU", "listaUnidades Size: ${unitList.size}")
     }
 
     private class unitsAdatper(ul : ArrayList<Unidade>, myContext : Context) : BaseAdapter()
@@ -86,6 +111,8 @@ class CriarUnitActivity : AppCompatActivity() {
 
             return row
         }
+
+
 
     }
 
