@@ -1,4 +1,4 @@
-package pt.isec.supraindustries.tp_amov
+package pt.isec.supraindustries.tp_amov.Activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,11 +9,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import pt.isec.supraindustries.tp_amov.Activities.EditaListaActivity
 import pt.isec.supraindustries.tp_amov.Data.Lista
 import pt.isec.supraindustries.tp_amov.Data.Produto
+import pt.isec.supraindustries.tp_amov.ListAdapter
+import pt.isec.supraindustries.tp_amov.R
 
 
-class MostrarListasActivity : AppCompatActivity(),ListAdapter.OnItemClickListener {
+class MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickListener {
 
     var produtoList: MutableList<Produto>? = null
     lateinit var removeButton: Button
@@ -59,7 +62,7 @@ class MostrarListasActivity : AppCompatActivity(),ListAdapter.OnItemClickListene
         r.apply {
             adapter?.notifyItemChanged(pos)
         }
-        val intent = Intent(this,EditaListaActivity::class.java)
+        val intent = Intent(this, EditaListaActivity::class.java)
         startActivity(intent)
     }
 }

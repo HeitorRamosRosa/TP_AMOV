@@ -7,7 +7,7 @@
     android:background="#ffffe0"
     android:orientation="vertical"
     android:padding="32dp"
-    tools:context=".EditaListaActivity">
+    tools:context=".Activities.EditaListaActivity">
 
     <TextView
         android:layout_width="wrap_content"

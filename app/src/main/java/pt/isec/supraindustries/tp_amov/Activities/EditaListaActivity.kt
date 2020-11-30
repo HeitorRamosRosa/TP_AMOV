@@ -1,9 +1,8 @@
-package pt.isec.supraindustries.tp_amov
+package pt.isec.supraindustries.tp_amov.Activities
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
@@ -12,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import pt.isec.supraindustries.tp_amov.Data.Lista
 import pt.isec.supraindustries.tp_amov.Data.Produto
+import pt.isec.supraindustries.tp_amov.R
 
 class EditaListaActivity: AppCompatActivity(){
 
@@ -45,6 +45,11 @@ class EditaListaActivity: AppCompatActivity(){
 
     }
 
+    fun onCriarProduto(view: View){
+        val intent = Intent(this, CriarProdutoActivity::class.java)
+        startActivity(intent)
+    }
+
     inner class lVAdapter(context: Context): BaseAdapter() {
 
         private val mContext: Context
@@ -54,7 +59,7 @@ class EditaListaActivity: AppCompatActivity(){
         }
 
         override fun getCount(): Int {
-            return lista.produtoList?.size
+            return lista.produtoList.size
         }
 
         override fun getItem(position: Int): Any {
