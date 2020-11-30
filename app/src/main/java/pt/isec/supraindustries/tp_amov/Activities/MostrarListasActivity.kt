@@ -16,7 +16,7 @@ import pt.isec.supraindustries.tp_amov.ListAdapter
 import pt.isec.supraindustries.tp_amov.R
 
 
-class MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickListener {
+class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickListener {
 
     var produtoList: MutableList<Produto>? = null
     lateinit var removeButton: Button
