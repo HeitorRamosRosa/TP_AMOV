@@ -42,6 +42,8 @@
     <string name="bCreateProduct">Create Product</string>
     <string name="tvCreatedUnits">Created Units:</string>
 
+    <string name="tvlistItems">Items:</string>
+
     <string name="etMandatory">Mandatory</string>
     <string name="etOptional">Optional</string>
     <string name="bCreateUnit">Create Unit</string>

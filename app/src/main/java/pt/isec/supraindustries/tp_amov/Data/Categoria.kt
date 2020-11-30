@@ -1,4 +1,8 @@
 package pt.isec.supraindustries.tp_amov.Data
 
-data class Categoria(var nome: String)
+import java.io.Serializable
+
+data class Categoria(var nome: String) : Serializable{
+
+}
 

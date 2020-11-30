@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffe0"
+    android:orientation="vertical"
+    android:padding="32dp"
+    tools:context=".EditaListaActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="default list name"
+        android:id="@+id/listName1"
+        android:textSize="24sp" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/constraintL1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvQtAdd"
+            app:layout_constraintTop_toTopOf="@id/constraintL1"
+            app:layout_constraintLeft_toLeftOf="@+id/constraintL1"
+            android:text="Item:"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qt"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toRightOf="@id/tvQtAdd"
+            app:layout_constraintTop_toTopOf="@+id/constraintL1"
+            android:layout_marginLeft="85sp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        >
+
+        <Spinner
+            android:id="@+id/sItemUnit"
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:padding="20sp"/>
+
+        <EditText
+            android:id="@+id/eItemQuantity"
+            android:inputType="number"
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:layout_gravity="right"
+            android:padding="20sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonAdd"
+            android:layout_weight="1"
+            android:layout_margin="5sp"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonCreate"
+            android:layout_weight="1"
+            android:layout_margin="5sp"
+            android:onClick="onCriarProduto"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvItemsInList"
+        android:textSize="24sp"/>
+
+
+    <TextView
+        android:id="@+id/itemsListados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/itemList1">
+
+    </ListView>
+
+</LinearLayout>

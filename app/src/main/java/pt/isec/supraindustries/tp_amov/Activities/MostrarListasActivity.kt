@@ -1,5 +1,6 @@
-package pt.isec.supraindustries.tp_amov.Activities
+package pt.isec.supraindustries.tp_amov
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -10,11 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.isec.supraindustries.tp_amov.Data.Lista
 import pt.isec.supraindustries.tp_amov.Data.Produto
-import pt.isec.supraindustries.tp_amov.ListAdapter
-import pt.isec.supraindustries.tp_amov.R
 
 
-class MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickListener {
+class MostrarListasActivity : AppCompatActivity(),ListAdapter.OnItemClickListener {
 
     var produtoList: MutableList<Produto>? = null
     lateinit var removeButton: Button
@@ -25,7 +24,7 @@ class MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickListen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mostar_listas)
+        setContentView(R.layout.activity_mostrar_listas)
 
         arrayListas = arrayListOf(Lista("Lista0"),Lista("Lista1"),Lista("Lista2"),Lista("Lista3"),Lista("Lista4"))
 
@@ -60,5 +59,7 @@ class MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickListen
         r.apply {
             adapter?.notifyItemChanged(pos)
         }
+        val intent = Intent(this,EditaListaActivity::class.java)
+        startActivity(intent)
     }
 }

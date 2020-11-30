@@ -28,4 +28,5 @@
     <string name="bCreateProduct">Criar Produto</string>
     <string name="etMandatory">Obrigatorio</string>
     <string name="etOptional">Opcional</string>
+    <string name="tvlistItems">Items na lista:</string>
 </resources>

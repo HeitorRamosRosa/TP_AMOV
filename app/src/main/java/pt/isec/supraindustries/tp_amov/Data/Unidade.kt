@@ -1,3 +1,5 @@
 package pt.isec.supraindustries.tp_amov.Data
 
-data class Unidade(var nome: String, var simbolo: String)
+import java.io.Serializable
+
+data class Unidade(var nome: String, var abreviatura: String): Serializable
