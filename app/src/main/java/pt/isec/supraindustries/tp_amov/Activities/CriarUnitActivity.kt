@@ -41,8 +41,8 @@ class CriarUnitActivity : AppCompatActivity() {
         Log.i(pt.isec.supraindustries.tp_amov.TAG, "UnitListSize: ${unitList.size}")
 
 
-        val temp = Unidade ("testUnidade","%")
-        unitList.add(temp)
+        //val temp = Unidade ("testUnidade","%")
+        //unitList.add(temp)
 
         Log.i(pt.isec.supraindustries.tp_amov.TAG, "UnitListSize: ${unitList.size}")
 
@@ -106,8 +106,8 @@ class CriarUnitActivity : AppCompatActivity() {
             Log.i("DEBUG_CREATE_UNIT","Position on row: ${position}")
             val unitName = row.findViewById<TextView>(R.id.row_unitname)
             val unitSymbol = row.findViewById<TextView>(R.id.row_unitsymbol)
-            unitName.append(unitlist[position].nome)
-            unitSymbol.append(unitlist[position].simbolo)
+            unitName.append(" "+unitlist[position].nome)
+            unitSymbol.append(" "+unitlist[position].simbolo)
 
             return row
         }

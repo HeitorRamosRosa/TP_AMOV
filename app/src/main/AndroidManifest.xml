@@ -13,10 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TP_AMOV">
+        <activity android:name=".Activities.CriarCategoriaActivity"></activity>
         <activity android:name=".Activities.CriarUnitActivity" />
         <activity android:name=".Activities.CriarProdutoActivity" />
         <activity android:name=".Activities.CriarListaActivity" />
-        <activity android:name=".Activities.MostrarListasActivity"/>
+        <activity android:name=".Activities.MostrarListasActivity" />
         <activity android:name=".Activities.EditaListaActivity" />
         <activity
             android:name=".MainActivity"

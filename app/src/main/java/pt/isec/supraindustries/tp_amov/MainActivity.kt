@@ -8,9 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import pt.isec.supraindustries.tp_amov.Activities.CriarCategoriaActivity
 import pt.isec.supraindustries.tp_amov.Activities.CriarListaActivity
 import pt.isec.supraindustries.tp_amov.Activities.CriarUnitActivity
 import pt.isec.supraindustries.tp_amov.Activities.MostrarListasActivity
+import pt.isec.supraindustries.tp_amov.Data.Categoria
 import pt.isec.supraindustries.tp_amov.Data.Unidade
 
 const val TAG = "DEBUG"
@@ -19,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
 
     var unidadeLista = ArrayList<Unidade>(0)
+    var categoryList = ArrayList<Categoria>(0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +73,12 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent,101)
     }
 
+    fun onEditarCategories(view: View){
+        val intent = Intent(this, CriarCategoriaActivity::class.java)
+        intent.putExtra("listaCategorias", categoryList)
+        startActivityForResult(intent, 102)
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -79,6 +88,14 @@ class MainActivity : AppCompatActivity() {
             {
                 Log.i("DEBUG","Getting Lista Unidades")
                 unidadeLista = data?.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
+            }
+        }
+        if(requestCode==102)
+        {
+            if(resultCode == Activity.RESULT_OK)
+            {
+                Log.i("DEBUG","Getting Lista Categorias")
+                categoryList = data?.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
             }
         }
     }

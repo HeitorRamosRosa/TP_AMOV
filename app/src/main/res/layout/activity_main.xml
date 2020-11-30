@@ -73,6 +73,7 @@
             android:text="@string/tvEditCategories"
             android:textSize="24sp"
             android:padding="24dp"
+            android:onClick="onEditarCategories"
             />
     </LinearLayout>
 </LinearLayout>
