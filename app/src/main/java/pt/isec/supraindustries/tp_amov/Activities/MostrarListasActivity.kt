@@ -1,9 +1,7 @@
-package pt.isec.supraindustries.tp_amov
+package pt.isec.supraindustries.tp_amov.Activities
 
-import android.icu.number.IntegerWidth
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -12,9 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.isec.supraindustries.tp_amov.Data.Lista
 import pt.isec.supraindustries.tp_amov.Data.Produto
+import pt.isec.supraindustries.tp_amov.ListAdapter
+import pt.isec.supraindustries.tp_amov.R
 
 
-class MostrarListasActivity : AppCompatActivity(),ListAdapter.OnItemClickListener {
+class MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickListener {
 
     var produtoList: MutableList<Produto>? = null
     lateinit var removeButton: Button

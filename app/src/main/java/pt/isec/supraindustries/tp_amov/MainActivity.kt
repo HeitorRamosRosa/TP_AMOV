@@ -3,13 +3,13 @@ package pt.isec.supraindustries.tp_amov
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import pt.isec.supraindustries.tp_amov.Activities.CriarListaActivity
 import pt.isec.supraindustries.tp_amov.Activities.CriarUnitActivity
+import pt.isec.supraindustries.tp_amov.Activities.MostrarListasActivity
 
 const val TAG = "hey"
 
@@ -46,12 +46,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onCriarLista(view: View){
-        val intent = Intent(this,CriarListaActivity::class.java)
+        val intent = Intent(this, CriarListaActivity::class.java)
         startActivity(intent)
     }
 
     fun onMostrarListas(view: View){
-        val intent = Intent(this,MostrarListasActivity::class.java)
+        val intent = Intent(this, MostrarListasActivity::class.java)
         startActivity(intent)
     }
 

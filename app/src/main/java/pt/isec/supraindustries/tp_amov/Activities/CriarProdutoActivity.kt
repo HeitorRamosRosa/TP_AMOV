@@ -1,9 +1,8 @@
-package pt.isec.supraindustries.tp_amov
+package pt.isec.supraindustries.tp_amov.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.EditText
 import pt.isec.supraindustries.tp_amov.Data.Produto
 import pt.isec.supraindustries.tp_amov.R
@@ -13,16 +12,16 @@ class CriarProdutoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_produto)
 
-        Log.i(TAG, "CriarProdutoActivity started")
+        Log.i(pt.isec.supraindustries.tp_amov.TAG, "CriarProdutoActivity started")
     }
 
     fun onCriaProduto(){
         var nome = findViewById<EditText>(R.id.etProductName)
         if(nome.length()==0 || nome.equals(" ")){
-            Log.i(TAG,"Impossivel Criar Produto com nome vazio.\n")
+            Log.i(pt.isec.supraindustries.tp_amov.TAG,"Impossivel Criar Produto com nome vazio.\n")
             return;
         }
-        Log.i(TAG, "Criando Produto ${nome.text.toString()}")
+        Log.i(pt.isec.supraindustries.tp_amov.TAG, "Criando Produto ${nome.text.toString()}")
         var produto = Produto(nome.text.toString())
     }
 }

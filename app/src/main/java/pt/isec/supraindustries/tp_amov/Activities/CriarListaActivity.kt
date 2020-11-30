@@ -1,15 +1,14 @@
-package pt.isec.supraindustries.tp_amov
+package pt.isec.supraindustries.tp_amov.Activities
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import pt.isec.supraindustries.tp_amov.R
 
 class CriarListaActivity : AppCompatActivity() {
 
@@ -39,7 +38,7 @@ class CriarListaActivity : AppCompatActivity() {
     }
 
     fun onCriarProduto(view: View){
-        val intent = Intent(this,CriarProdutoActivity::class.java)
+        val intent = Intent(this, CriarProdutoActivity::class.java)
         startActivity(intent)
     }
 }
