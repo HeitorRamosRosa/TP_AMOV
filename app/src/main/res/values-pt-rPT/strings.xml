@@ -29,4 +29,14 @@
     <string name="etMandatory">Obrigatorio</string>
     <string name="etOptional">Opcional</string>
     <string name="tvlistItems">Items na lista:</string>
+    <string name="tvCreatedUnits">Unidades Criadas:</string>
+    <string name="bCreateUnit">Criar Unidade</string>
+    <string name="unit_name">Nome da Unidade:</string>
+    <string name="Unit_Symbol">Símbolo da Unidade:</string>
+    <string name="save">Gravar</string>
+    <string name="tv_criar_categoria">Criar Categoria</string>
+    <string name="tv_category_name">Nome da Categoria</string>
+    <string name="b_create_category">Criar Categoria</string>
+    <string name="tv_created_categories">Categorias Criadas</string>
+    <string name="rowCategoryName">Nome da Categoria</string>
 </resources>

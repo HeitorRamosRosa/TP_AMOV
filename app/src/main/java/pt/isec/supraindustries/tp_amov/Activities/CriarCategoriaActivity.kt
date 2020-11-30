@@ -42,7 +42,6 @@ class CriarCategoriaActivity : AppCompatActivity() {
 
     private class categoryAdapter(cl: ArrayList<Categoria>, myContext : Context): BaseAdapter()
     {
-
         private val mContext :Context
         init{
             mContext = myContext
