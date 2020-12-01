@@ -47,6 +47,12 @@ class EditaListaActivity: AppCompatActivity(){
         lista2.addProduto(p2)
         lVA = lVAdapter(this)
         lV.adapter = lVA
+        
+        lV.setOnItemClickListener { parent, view, position, id ->
+            lista.produtoList.removeAt(position)
+            lVA.notifyDataSetChanged()
+        }
+
         tV.text = lista.nome
         if(option != null){
             adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,lista2.produtoList)
