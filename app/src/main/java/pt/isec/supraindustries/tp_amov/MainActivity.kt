@@ -13,6 +13,7 @@ import pt.isec.supraindustries.tp_amov.Activities.CriarListaActivity
 import pt.isec.supraindustries.tp_amov.Activities.CriarUnitActivity
 import pt.isec.supraindustries.tp_amov.Activities.MostrarListasActivity
 import pt.isec.supraindustries.tp_amov.Data.Categoria
+import pt.isec.supraindustries.tp_amov.Data.Produto
 import pt.isec.supraindustries.tp_amov.Data.Unidade
 
 const val TAG = "DEBUG"
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     var unidadeLista = ArrayList<Unidade>(0)
     var categoryList = ArrayList<Categoria>(0)
+    var productList = ArrayList<Produto>(0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +61,8 @@ class MainActivity : AppCompatActivity() {
 
     fun onCriarLista(view: View){
         val intent = Intent(this, CriarListaActivity::class.java)
-        startActivity(intent)
+        intent.putExtra("listaProdutos",productList)
+        startActivityForResult(intent, 103)
     }
 
     fun onMostrarListas(view: View){
@@ -96,6 +99,15 @@ class MainActivity : AppCompatActivity() {
             {
                 Log.i("DEBUG","Getting Lista Categorias")
                 categoryList = data?.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
+            }
+        }
+        if(requestCode==103)
+        {
+            if(resultCode == Activity.RESULT_OK)
+            {
+                productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+
+                Log.i("DEBUG","Getting Lista Produtos. Size: ${productList.size}")
             }
         }
     }
