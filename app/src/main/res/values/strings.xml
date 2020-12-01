@@ -55,4 +55,6 @@
     <string name="b_create_category">Create Category</string>
     <string name="tv_created_categories">Created Categories</string>
     <string name="rowCategoryName">Category Name</string>
+    <string name="tv_edit_products">Edit Products</string>
+    <string name="b_save_changes">Save Changes</string>
 </resources>

@@ -63,7 +63,7 @@ class CriarCategoriaActivity : AppCompatActivity() {
 
         override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
-            val row = layoutInflater.inflate(R.layout.category_row, viewGroup, false)
+            val row = layoutInflater.inflate(R.layout.row_category, viewGroup, false)
 
             val categoryName = row.findViewById<TextView>(R.id.row_categoryname)
             categoryName.text = categoryList[position].nome

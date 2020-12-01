@@ -26,6 +26,10 @@ class CriarUnitActivity : AppCompatActivity() {
 
         Log.i(pt.isec.supraindustries.tp_amov.TAG, "onResume: CriarUnitAcitivty")
         Log.i(pt.isec.supraindustries.tp_amov.TAG, "UnitListSize: ${unitList.size}")
+
+
+        val listview = findViewById<ListView>(R.id.cu_UnitList)
+        listview.adapter = unitsAdatper(unitList, this)
     }
 
 
@@ -40,14 +44,6 @@ class CriarUnitActivity : AppCompatActivity() {
         Log.i(pt.isec.supraindustries.tp_amov.TAG, "onCreate: CriarUnitAcitivty")
         Log.i(pt.isec.supraindustries.tp_amov.TAG, "UnitListSize: ${unitList.size}")
 
-
-        //val temp = Unidade ("testUnidade","%")
-        //unitList.add(temp)
-
-        Log.i(pt.isec.supraindustries.tp_amov.TAG, "UnitListSize: ${unitList.size}")
-
-        val listview = findViewById<ListView>(R.id.cu_UnitList)
-        listview.adapter = unitsAdatper(unitList, this)
     }
 
     fun Save(view: View){
@@ -101,7 +97,7 @@ class CriarUnitActivity : AppCompatActivity() {
         //responsible for rendering each row
         override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
-            val row = layoutInflater.inflate(R.layout.unit_row, viewGroup, false)
+            val row = layoutInflater.inflate(R.layout.row_unit, viewGroup, false)
 
             Log.i("DEBUG_CREATE_UNIT","Position on row: ${position}")
             val unitName = row.findViewById<TextView>(R.id.row_unitname)

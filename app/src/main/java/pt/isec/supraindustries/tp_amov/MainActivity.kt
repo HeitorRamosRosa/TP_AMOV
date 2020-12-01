@@ -8,10 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import pt.isec.supraindustries.tp_amov.Activities.CriarCategoriaActivity
-import pt.isec.supraindustries.tp_amov.Activities.CriarListaActivity
-import pt.isec.supraindustries.tp_amov.Activities.CriarUnitActivity
-import pt.isec.supraindustries.tp_amov.Activities.MostrarListasActivity
+import pt.isec.supraindustries.tp_amov.Activities.*
 import pt.isec.supraindustries.tp_amov.Data.Categoria
 import pt.isec.supraindustries.tp_amov.Data.Produto
 import pt.isec.supraindustries.tp_amov.Data.Unidade
@@ -82,10 +79,16 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, 102)
     }
 
+    fun onEditarProducts(view: View){
+        val intent = Intent(this, EditaProdutoActivity::class.java)
+        intent.putExtra("listaProdutos", productList)
+        startActivityForResult(intent, 103)
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode==101)
+        if(requestCode==101) //atualiza unit list
         {
             if(resultCode == Activity.RESULT_OK)
             {
@@ -93,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                 unidadeLista = data?.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
             }
         }
-        if(requestCode==102)
+        if(requestCode==102) //atualiza category list
         {
             if(resultCode == Activity.RESULT_OK)
             {
@@ -101,7 +104,7 @@ class MainActivity : AppCompatActivity() {
                 categoryList = data?.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
             }
         }
-        if(requestCode==103)
+        if(requestCode==103) //atualiza produto list
         {
             if(resultCode == Activity.RESULT_OK)
             {

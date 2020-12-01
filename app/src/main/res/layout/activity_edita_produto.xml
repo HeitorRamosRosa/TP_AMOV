@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/standardBackground"
+    android:orientation="vertical"
+    tools:context=".Activities.EditaProdutoActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/PageName"
+        android:text="@string/tv_edit_products"
+        android:layout_marginTop="12sp"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        
+        <ListView
+            android:id="@+id/ep_lvProdutos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginVertical="6sp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bCreateProduct"
+                android:layout_gravity="center"
+                android:layout_marginBottom="6sp"
+                android:onClick="onCriarProduto"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="26sp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/b_save_changes"
+                android:layout_gravity="center"
+                android:layout_marginBottom="6sp"
+                android:onClick="onSaveChanges"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="26sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
