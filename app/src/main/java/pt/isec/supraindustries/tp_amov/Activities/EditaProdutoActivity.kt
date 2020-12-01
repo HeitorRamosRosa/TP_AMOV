@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import pt.isec.supraindustries.tp_amov.Data.Categoria
 import pt.isec.supraindustries.tp_amov.Data.Unidade
 import pt.isec.supraindustries.tp_amov.R
@@ -42,6 +43,12 @@ class EditaProdutoActivity : AppCompatActivity() {
 
         Log.i("DEBUG_EditProd", "onCreate: EditarProdutoAcitivty")
         Log.i("DEBUG_EditProd", "ProdListSize: ${productList.size}")
+
+        val lv = findViewById<ListView>(R.id.ep_lvProdutos)
+        lv.setOnItemClickListener { parent, view, position, id ->
+            Log.i("DEBUG_EditProduto","clicked on item, position: $position")
+            Toast.makeText(this, "Clicked on item $position", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private class produtoAdapter (pl : ArrayList<Produto>, myContext : Context) : BaseAdapter()
