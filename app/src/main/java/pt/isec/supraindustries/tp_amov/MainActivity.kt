@@ -18,7 +18,7 @@ const val TAG = "DEBUG"
 class MainActivity : AppCompatActivity() {
 
 
-    var unidadeLista = ArrayList<Unidade>(0)
+    var unitList = ArrayList<Unidade>(0)
     var categoryList = ArrayList<Categoria>(0)
     var productList = ArrayList<Produto>(0)
 
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.i(TAG, "unidadeLista size: ${unidadeLista.size}")
+        Log.i(TAG, "unidadeLista size: ${unitList.size}")
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onEditarUnits(view: View){
         val intent = Intent(this,CriarUnitActivity::class.java)
-        intent.putExtra("listaUnidades",unidadeLista)
+        intent.putExtra("listaUnidades",unitList)
         startActivityForResult(intent,101)
     }
 
@@ -82,6 +82,8 @@ class MainActivity : AppCompatActivity() {
     fun onEditarProducts(view: View){
         val intent = Intent(this, EditaProdutoActivity::class.java)
         intent.putExtra("listaProdutos", productList)
+        intent.putExtra("listaCategorias",categoryList)
+        intent.putExtra("listaUnidades",unitList)
         startActivityForResult(intent, 103)
     }
 
@@ -93,7 +95,7 @@ class MainActivity : AppCompatActivity() {
             if(resultCode == Activity.RESULT_OK)
             {
                 Log.i("DEBUG","Getting Lista Unidades")
-                unidadeLista = data?.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
+                unitList = data?.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
             }
         }
         if(requestCode==102) //atualiza category list

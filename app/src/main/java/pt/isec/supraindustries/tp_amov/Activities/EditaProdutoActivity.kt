@@ -9,10 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ListView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import pt.isec.supraindustries.tp_amov.Data.Categoria
 import pt.isec.supraindustries.tp_amov.Data.Unidade
 import pt.isec.supraindustries.tp_amov.R
@@ -21,7 +18,8 @@ import pt.isec.supraindustries.tp_amov.Data.Produto
 class EditaProdutoActivity : AppCompatActivity() {
 
     lateinit var productList : ArrayList<Produto>
-
+    lateinit var categoryList : ArrayList<Categoria>
+    lateinit var unitList : ArrayList<Unidade>
 
     override fun onResume() {
         super.onResume()
@@ -46,9 +44,23 @@ class EditaProdutoActivity : AppCompatActivity() {
 
         val lv = findViewById<ListView>(R.id.ep_lvProdutos)
         lv.setOnItemClickListener { parent, view, position, id ->
+            categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
+            unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
             Log.i("DEBUG_EditProduto","clicked on item, position: $position")
-            Toast.makeText(this, "Clicked on item $position", Toast.LENGTH_SHORT).show()
+            setContentView(R.layout.edita_single_produto)
+            atualizaSingleProduto(position)
         }
+    }
+
+    private fun atualizaSingleProduto(index : Int) {
+        val et_Name = findViewById<EditText>(R.id.ep_etProductName)
+        val et_Brand = findViewById<EditText>(R.id.ep_etProductBrand)
+
+        var produtoEditar = productList[index]
+
+        et_Name.setText(produtoEditar.nome)
+        et_Brand.setText(produtoEditar.marca)
+
     }
 
     private class produtoAdapter (pl : ArrayList<Produto>, myContext : Context) : BaseAdapter()
@@ -114,5 +126,24 @@ class EditaProdutoActivity : AppCompatActivity() {
         returnIntent.putExtra("listaProdutos",productList)
         setResult(Activity.RESULT_OK,returnIntent)
         finish()
+    }
+
+    fun spBack(view: View)
+    {
+        setContentView(R.layout.activity_edita_produto)
+
+        val listview = findViewById<ListView>(R.id.ep_lvProdutos)
+        listview.adapter = produtoAdapter(productList,this)
+
+
+        val lv = findViewById<ListView>(R.id.ep_lvProdutos)
+        lv.setOnItemClickListener { parent, view, position, id ->
+            categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
+            unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
+            Log.i("DEBUG_EditProduto","clicked on item, position: $position")
+            setContentView(R.layout.edita_single_produto)
+            atualizaSingleProduto(position)
+        }
+        
     }
 }

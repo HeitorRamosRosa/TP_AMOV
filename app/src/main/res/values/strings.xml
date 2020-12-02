@@ -57,4 +57,10 @@
     <string name="rowCategoryName">Category Name</string>
     <string name="tv_edit_products">Edit Products</string>
     <string name="b_save_changes">Save Changes</string>
+    <string name="tv_edit_product">Edit Product</string>
+    <string name="tv_name">Name:</string>
+    <string name="tv_brand">Brand:</string>
+    <string name="tv_unit">Unit:</string>
+    <string name="tv_category">Category:</string>
+    <string name="b_Back">Back</string>
 </resources>
