@@ -38,10 +38,10 @@ class CriarProdutoActivity : AppCompatActivity() {
         }
 
         val marca = findViewById<EditText>(R.id.etProductBrand).text.toString()
-        //var unidade =
+
         val notas = findViewById<EditText>(R.id.etProductNotes).text.toString()
 
-        var temp = Produto(nome, marca, null, notas)
+        var temp = Produto(nome, marca, null, null ,notas)
         productList.add(temp)
 
         val returnIntent = this.intent

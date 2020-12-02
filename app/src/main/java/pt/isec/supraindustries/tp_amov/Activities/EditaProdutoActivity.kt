@@ -20,6 +20,7 @@ class EditaProdutoActivity : AppCompatActivity() {
     lateinit var productList : ArrayList<Produto>
     lateinit var categoryList : ArrayList<Categoria>
     lateinit var unitList : ArrayList<Unidade>
+    var pPos : Int = -1
 
     override fun onResume() {
         super.onResume()
@@ -48,19 +49,50 @@ class EditaProdutoActivity : AppCompatActivity() {
             unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
             Log.i("DEBUG_EditProduto","clicked on item, position: $position")
             setContentView(R.layout.edita_single_produto)
-            atualizaSingleProduto(position)
+            pPos = position
+            atualizaSingleProdutoVista()
         }
     }
 
-    private fun atualizaSingleProduto(index : Int) {
+    private fun atualizaSingleProdutoVista() {
         val et_Name = findViewById<EditText>(R.id.ep_etProductName)
         val et_Brand = findViewById<EditText>(R.id.ep_etProductBrand)
 
-        var produtoEditar = productList[index]
-
+        var produtoEditar = productList[pPos]
+        var pUnitIndex : Int = -1
+        var pCategoryIndex : Int = -1
+        var counter : Int = 0
         et_Name.setText(produtoEditar.nome)
         et_Brand.setText(produtoEditar.marca)
 
+        //por unidades e categoria no spinner
+        //descobrir qual a unidade e categoria set para o produto e po-las como o default escolhido
+
+        var s_Unit = findViewById<Spinner>(R.id.ep_sUnit)
+        var s_Category = findViewById<Spinner>(R.id.ep_sCategory)
+        var unidades : ArrayList<String> = arrayListOf("N/A")
+        var categorias : ArrayList<String> = arrayListOf("N/A")
+
+        for(unidade in unitList){
+            unidades.add(unidade.nome)
+            if(unidade == produtoEditar.unidade)
+                pUnitIndex = counter
+            counter++
+        }
+        counter = 0
+
+        for(categoria in categoryList){
+            categorias.add(categoria.nome)
+            if(categoria == produtoEditar.categoria)
+                pCategoryIndex = counter
+            counter++
+        }
+        counter = 0
+
+        s_Unit.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,unidades)
+        s_Category.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,categorias)
+        s_Unit.setSelection(pUnitIndex+1)
+        s_Category.setSelection(pCategoryIndex+1)
     }
 
     private class produtoAdapter (pl : ArrayList<Produto>, myContext : Context) : BaseAdapter()
@@ -142,8 +174,19 @@ class EditaProdutoActivity : AppCompatActivity() {
             unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
             Log.i("DEBUG_EditProduto","clicked on item, position: $position")
             setContentView(R.layout.edita_single_produto)
-            atualizaSingleProduto(position)
+            pPos = position
+            atualizaSingleProdutoVista()
         }
-        
+
+    }
+
+    fun spSave(view: View)
+    {
+        val et_Name = findViewById<EditText>(R.id.ep_etProductName)
+        val et_Brand = findViewById<EditText>(R.id.ep_etProductBrand)
+        productList[pPos].nome = et_Name.text.toString()
+        productList[pPos].marca = et_Brand.text.toString()
+
+        spBack(view)
     }
 }

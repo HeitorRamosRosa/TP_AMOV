@@ -38,7 +38,7 @@ class CriarListaActivity : AppCompatActivity() {
         var options = arrayOf("");
 
         option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
-
+        //ja nao tenho a certeza o que abaixo faz, comentar e ver se faz  diferença
         option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -87,7 +87,6 @@ class CriarListaActivity : AppCompatActivity() {
         }
 
         spinner.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,pNomes)
-
 
     }
 }

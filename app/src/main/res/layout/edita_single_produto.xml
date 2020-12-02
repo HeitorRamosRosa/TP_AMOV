@@ -103,7 +103,8 @@
             android:layout_margin="12sp"
             android:text="@string/save"
             android:layout_weight="1"
-            android:id="@+id/ep_bSave"/>
+            android:id="@+id/ep_bSave"
+            android:onClick="spSave"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
