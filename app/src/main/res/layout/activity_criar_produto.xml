@@ -97,7 +97,7 @@
                 style="@style/TextFieldName"
                 android:text="@string/tvProductUnit"/>
             <Spinner
-                android:id="@+id/stemUnit"
+                android:id="@+id/cp_sProductUnit"
                 android:layout_width="120sp"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
@@ -117,7 +117,7 @@
                 style="@style/TextFieldName"
                 android:text="@string/tv_category"/>
             <Spinner
-                android:id="@+id/sitemCategory"
+                android:id="@+id/cp_sProductCategory"
                 android:layout_width="120sp"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"

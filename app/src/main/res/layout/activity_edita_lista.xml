@@ -52,7 +52,7 @@
         >
 
         <Spinner
-            android:id="@+id/sItemUnit"
+            android:id="@+id/el_sItemUnit"
             android:layout_width="120sp"
             android:layout_height="wrap_content"
             android:textSize="24sp"

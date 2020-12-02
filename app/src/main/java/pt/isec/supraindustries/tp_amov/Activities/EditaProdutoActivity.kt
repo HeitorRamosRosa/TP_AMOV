@@ -25,33 +25,48 @@ class EditaProdutoActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        Log.i("DEBUG_EditProd", "onResume: EditarProdutoAcitivty")
-        Log.i("DEBUG_EditProd", "ProdListSize: ${productList.size}")
 
+        val intent = this.intent
+        categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
+        unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
 
         val listview = findViewById<ListView>(R.id.ep_lvProdutos)
         listview.adapter = produtoAdapter(productList,this)
+
+        listview.setOnItemClickListener { parent, view, position, id ->
+            Log.i("DEBUG_EditProduto","clicked on item, position: $position")
+            setContentView(R.layout.edita_single_produto)
+            pPos = position
+            atualizaSingleProdutoVista()
+        }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edita_produto)
 
+        //o product list tem de ser inicializado no onCreate e nao pode ser no  onResume, porque ao criar um produto, este vai ser modificado, ou seja
+        //se voltar a iniciar pelo que recebeu por intent, vai ficar desatualizado. Tem de inicializar por aqui uma vez quando a atividade começa, e outra vez pelo onActivity result
+        productList  = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+/*
         val intent = this.intent
         productList  = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+        categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
+        unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
+
 
         Log.i("DEBUG_EditProd", "onCreate: EditarProdutoAcitivty")
         Log.i("DEBUG_EditProd", "ProdListSize: ${productList.size}")
 
         val lv = findViewById<ListView>(R.id.ep_lvProdutos)
         lv.setOnItemClickListener { parent, view, position, id ->
-            categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
-            unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
             Log.i("DEBUG_EditProduto","clicked on item, position: $position")
             setContentView(R.layout.edita_single_produto)
             pPos = position
             atualizaSingleProdutoVista()
         }
+        */
     }
 
     private fun atualizaSingleProdutoVista() {
@@ -136,6 +151,8 @@ class EditaProdutoActivity : AppCompatActivity() {
     {
         val intent = Intent(this, CriarProdutoActivity::class.java)
         intent.putExtra("listaProdutos", productList)
+        intent.putExtra("listaCategorias", categoryList)
+        intent.putExtra("listaUnidades", unitList)
         startActivityForResult(intent, 203)
     }
 
@@ -184,6 +201,7 @@ class EditaProdutoActivity : AppCompatActivity() {
     {
         val et_Name = findViewById<EditText>(R.id.ep_etProductName)
         val et_Brand = findViewById<EditText>(R.id.ep_etProductBrand)
+        //fazer processamento de gravar unidades e categorias
         productList[pPos].nome = et_Name.text.toString()
         productList[pPos].marca = et_Brand.text.toString()
 
