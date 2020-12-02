@@ -47,7 +47,7 @@ class EditaListaActivity: AppCompatActivity(){
         lista2.addProduto(p2)
         lVA = lVAdapter(this)
         lV.adapter = lVA
-        
+
         lV.setOnItemClickListener { parent, view, position, id ->
             lista.produtoList.removeAt(position)
             lVA.notifyDataSetChanged()
