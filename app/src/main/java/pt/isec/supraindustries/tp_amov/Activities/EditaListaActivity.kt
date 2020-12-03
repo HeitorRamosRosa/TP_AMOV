@@ -27,7 +27,10 @@ class EditaListaActivity: AppCompatActivity(){
     lateinit var adapter : ArrayAdapter<Produto>
     lateinit var lVA: lVAdapter
     lateinit var productList : ArrayList<Produto>
+    lateinit var tempProductList : ArrayList<Produto>
+    lateinit var tempQtList : ArrayList<Int>
     lateinit var lists : ArrayList<Lista>
+    lateinit var eTQt : EditText
     var posList : Int = -1
 
     init{
@@ -39,25 +42,37 @@ class EditaListaActivity: AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edita_lista)
+        tempProductList = ArrayList<Produto>(0)
+        tempQtList =  ArrayList<Int>(0)
 
         productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
         lists = intent.getSerializableExtra("lists") as ArrayList<Lista>
         posList = intent.getSerializableExtra("posList") as Int
         lista = lists[posList]
-
+        eTQt = findViewById(R.id.eItemQuantity)
         lV = findViewById(R.id.itemList1)
         tV = findViewById(R.id.listName1)
         option = findViewById(R.id.el_sItemUnit) as Spinner
         bAddProduto = findViewById(R.id.buttonAddItem)
+
+        for((key , value) in lista.lista){
+            tempProductList.add(key)
+            tempQtList.add(value)
+        }
+
         lVA = lVAdapter(this)
         lV.adapter = lVA
 
         lV.setOnItemClickListener { parent, view, position, id ->
-            lista.lista.remove(productList.get(position))
+            lista.lista.remove(tempProductList.get(position))
+            tempProductList.removeAt(position)
+            tempQtList.removeAt(position)
+
             lVA.notifyDataSetChanged()
         }
 
         tV.text = lista.nome
+
 
         if(option != null){
             adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,productList)
@@ -89,11 +104,11 @@ class EditaListaActivity: AppCompatActivity(){
         }
 
         override fun getCount(): Int {
-            return lista.lista.size
+            return tempProductList.size
         }
 
-        override fun getItem(position: Int): Int? {
-            return lista.lista[position]
+        override fun getItem(position: Int): Any {
+            return tempProductList[position]
         }
 
         override fun getItemId(position: Int): Long {
@@ -102,14 +117,24 @@ class EditaListaActivity: AppCompatActivity(){
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val textView = TextView(mContext)
-            textView.text = lista.lista[position].toString()
+            textView.text = tempProductList[position].toString()
             return textView
         }
 
     }
     fun onAddButtonClicked(view: View){
-        lista.lista.set(productList[sPos],1)
-        lVA.notifyDataSetChanged()
+        var x : Int
+        if(!eTQt.text.toString().isEmpty()){
+            x = Integer.parseInt(eTQt.text.toString())
+        }else{
+            x = -1
+        }
+
+        if(x > 0){
+            tempProductList.add((productList[sPos]))
+            tempQtList.add(x)
+            lVA.notifyDataSetChanged()
+        }
     }
 
     fun Save(view: View)
