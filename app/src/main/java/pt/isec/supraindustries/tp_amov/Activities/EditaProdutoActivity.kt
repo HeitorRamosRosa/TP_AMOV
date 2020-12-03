@@ -39,7 +39,6 @@ class EditaProdutoActivity : AppCompatActivity() {
             pPos = position
             atualizaSingleProdutoVista()
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -202,6 +201,22 @@ class EditaProdutoActivity : AppCompatActivity() {
         val et_Name = findViewById<EditText>(R.id.ep_etProductName)
         val et_Brand = findViewById<EditText>(R.id.ep_etProductBrand)
         //fazer processamento de gravar unidades e categorias
+        val unitIndex = findViewById<Spinner>(R.id.ep_sUnit).selectedItemPosition
+        val categoryIndex = findViewById<Spinner>(R.id.ep_sCategory).selectedItemPosition
+        if(unitIndex == 0)
+            productList[pPos].unidade = null
+        else
+        {
+            productList[pPos].unidade = unitList[unitIndex-1]
+        }
+        if(categoryIndex == 0)
+            productList[pPos].categoria = null
+        else
+        {
+            productList[pPos].categoria = categoryList[categoryIndex-1]
+        }
+
+
         productList[pPos].nome = et_Name.text.toString()
         productList[pPos].marca = et_Brand.text.toString()
 
