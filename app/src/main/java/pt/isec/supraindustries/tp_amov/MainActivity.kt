@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import pt.isec.supraindustries.tp_amov.Activities.*
 import pt.isec.supraindustries.tp_amov.Data.Categoria
+import pt.isec.supraindustries.tp_amov.Data.Lista
 import pt.isec.supraindustries.tp_amov.Data.Produto
 import pt.isec.supraindustries.tp_amov.Data.Unidade
 
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     var unitList = ArrayList<Unidade>(0)
     var categoryList = ArrayList<Categoria>(0)
     var productList = ArrayList<Produto>(0)
-
+    var lists = ArrayList<Lista>(0)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -64,7 +65,9 @@ class MainActivity : AppCompatActivity() {
 
     fun onMostrarListas(view: View){
         val intent = Intent(this, MostrarListasActivity::class.java)
-        startActivity(intent)
+        intent.putExtra("listaProdutos",productList)
+        intent.putExtra("lists",lists)
+        startActivityForResult(intent, 104)
     }
 
     fun onEditarUnits(view: View){
@@ -113,6 +116,15 @@ class MainActivity : AppCompatActivity() {
                 productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
 
                 Log.i("DEBUG","Getting Lista Produtos. Size: ${productList.size}")
+            }
+        }
+        if(requestCode==104) //pode atualizar lists ou productlist
+        {
+            if(resultCode == Activity.RESULT_OK)
+            {
+                productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+                lists = data?.getSerializableExtra("lists") as ArrayList<Lista>
+                Log.i("DEBUG","Getting produtos or lists. Size: ${productList.size} && ${lists.size}")
             }
         }
     }

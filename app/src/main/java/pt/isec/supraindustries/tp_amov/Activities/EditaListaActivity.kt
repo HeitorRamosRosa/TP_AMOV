@@ -1,5 +1,6 @@
 package pt.isec.supraindustries.tp_amov.Activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -20,15 +21,17 @@ class EditaListaActivity: AppCompatActivity(){
     lateinit var bAddProduto : Button
     var sPos : Int = -1
     var lPos = 0;
-    //var lista: Lista = l
-    var lista: Lista
+    lateinit var lista: Lista
     var p1: Produto
     var p2: Produto
     var lista2: Lista
     lateinit var adapter : ArrayAdapter<Produto>
     lateinit var lVA: lVAdapter
+    lateinit var productList : ArrayList<Produto>
+    lateinit var lists : ArrayList<Lista>
+    var posList : Int = -1
+
     init{
-        lista = Lista("judaspog")
         lista2 = Lista("TEST")
         p1 = Produto("bom dia")
         p2 = Produto("boa tarde")
@@ -47,6 +50,10 @@ class EditaListaActivity: AppCompatActivity(){
         lista2.addProduto(p2)
         lVA = lVAdapter(this)
         lV.adapter = lVA
+        productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+        lists = intent.getSerializableExtra("lists") as ArrayList<Lista>
+        posList = intent.getSerializableExtra("posList") as Int
+        lista = lists[posList]
 
         lV.setOnItemClickListener { parent, view, position, id ->
             lista.produtoList.removeAt(position)
@@ -54,8 +61,9 @@ class EditaListaActivity: AppCompatActivity(){
         }
 
         tV.text = lista.nome
+
         if(option != null){
-            adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,lista2.produtoList)
+            adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,productList)
             option.adapter = adapter
         }
         option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -103,7 +111,29 @@ class EditaListaActivity: AppCompatActivity(){
 
     }
     fun onAddButtonClicked(view: View){
-        lista.produtoList.add(lista2.produtoList[sPos])
+        lista.produtoList.add(productList[sPos])
         lVA.notifyDataSetChanged()
     }
+
+    fun Save(view: View)
+    {
+        val nome = findViewById<EditText>(R.id.etProductName).text.toString()
+        if(nome.isEmpty()){
+            Toast.makeText(this, "Fill the mandatory fields", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val marca = findViewById<EditText>(R.id.etProductBrand).text.toString()
+        val notas = findViewById<EditText>(R.id.etProductNotes).text.toString()
+
+        var temp = Produto(nome, marca, null, notas)
+        productList.add(temp)
+
+        val returnIntent = this.intent
+        returnIntent.putExtra("listaProdutos",productList)
+        returnIntent.putExtra("lists",lists)
+        setResult(Activity.RESULT_OK,returnIntent)
+        finish()
+    }
+
 }

@@ -1,7 +1,9 @@
 package pt.isec.supraindustries.tp_amov.Activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -10,8 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.isec.supraindustries.tp_amov.Activities.EditaListaActivity
+import pt.isec.supraindustries.tp_amov.Data.Categoria
 import pt.isec.supraindustries.tp_amov.Data.Lista
 import pt.isec.supraindustries.tp_amov.Data.Produto
+import pt.isec.supraindustries.tp_amov.Data.Unidade
 import pt.isec.supraindustries.tp_amov.ListAdapter
 import pt.isec.supraindustries.tp_amov.R
 
@@ -23,6 +27,8 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
     lateinit var arrayListas: ArrayList<Lista>
     lateinit var removeEt: EditText
     lateinit var r : RecyclerView
+    lateinit var productList : ArrayList<Produto>
+    lateinit var lists : ArrayList<Lista>
     private val m = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +36,8 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
         setContentView(R.layout.activity_mostrar_listas)
 
         arrayListas = arrayListOf(Lista("Lista0"),Lista("Lista1"),Lista("Lista2"),Lista("Lista3"),Lista("Lista4"))
-
+        productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+        lists = intent.getSerializableExtra("lists") as ArrayList<Lista>
         r = findViewById(R.id.itemList)
         removeButton = findViewById(R.id.removeButton)
         removeEt = findViewById(R.id.removeEt)
@@ -40,6 +47,14 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
             layoutManager = LinearLayoutManager(this@MostrarListasActivity)
             adapter = ListAdapter(arrayListas,m)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val intent = this.intent
+        productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+        lists = intent.getSerializableExtra("lists") as ArrayList<Lista>
+        Log.i("DEBUG","onResume ShowListActivity")
     }
 
     fun onRemoveButtonClicked(view: View) {
@@ -58,11 +73,39 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
 
     override fun onItemClick(pos: Int) {
         Toast.makeText(this, "to new screen $pos", Toast.LENGTH_SHORT).show()
-        val clickedItem : Lista = arrayListas[pos]
+        //val clickedItem : Lista = arrayListas[pos]
         r.apply {
             adapter?.notifyItemChanged(pos)
         }
         val intent = Intent(this, EditaListaActivity::class.java)
-        startActivity(intent)
+        intent.putExtra("listaProdutos",productList)
+        intent.putExtra("lists",lists)
+        intent.putExtra("posList",pos)
+        startActivityForResult(intent, 104)
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode==105) //pode atualizar lists ou productlist
+        {
+            if(resultCode == Activity.RESULT_OK)
+            {
+                productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+                lists = data?.getSerializableExtra("lists") as ArrayList<Lista>
+                Log.i("DEBUG","Getting produtos or lists. Size: ${productList.size} && ${lists.size}")
+            }
+        }
+    }
+
+    fun Save(view: View)
+    {
+
+        val returnIntent = this.intent
+        returnIntent.putExtra("listaProdutos",productList)
+        returnIntent.putExtra("lists",lists)
+        setResult(Activity.RESULT_OK,returnIntent)
+        finish()
+    }
+
 }

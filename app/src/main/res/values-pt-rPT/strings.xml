@@ -39,4 +39,5 @@
     <string name="b_create_category">Criar Categoria</string>
     <string name="tv_created_categories">Categorias Criadas</string>
     <string name="rowCategoryName">Nome da Categoria</string>
+    <string name="saveAndLeave">Salvar e sair</string>
 </resources>
