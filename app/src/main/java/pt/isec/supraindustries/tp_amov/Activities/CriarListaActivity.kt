@@ -18,8 +18,6 @@ import pt.isec.supraindustries.tp_amov.R
 
 class CriarListaActivity : AppCompatActivity() {
 
-    lateinit var option : Spinner
-    lateinit var result : TextView
 
     lateinit var productList : ArrayList<Produto>
     lateinit var categoryList : ArrayList<Categoria>
@@ -40,22 +38,6 @@ class CriarListaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_lista)
-        option = findViewById<Spinner>(R.id.sItemProduto)
-        result = findViewById<TextView>(R.id.itemsListados)
-        var options = arrayOf("");
-
-        option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
-        //ja nao tenho a certeza o que abaixo faz, comentar e ver se faz  diferença
-        option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                result.text = options.toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                result.text = "Please select an item."
-            }
-        }
     }
 
     fun onCriarProduto(view: View){
@@ -101,7 +83,6 @@ class CriarListaActivity : AppCompatActivity() {
 
     fun addItem(view: View)
     {
-        
-        tempLista.addProduto()
+
     }
 }
