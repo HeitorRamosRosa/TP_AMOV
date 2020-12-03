@@ -60,6 +60,8 @@ class MainActivity : AppCompatActivity() {
     fun onCriarLista(view: View){
         val intent = Intent(this, CriarListaActivity::class.java)
         intent.putExtra("listaProdutos",productList)
+        intent.putExtra("listaCategorias",categoryList)
+        intent.putExtra("listaUnidades",unitList)
         startActivityForResult(intent, 103)
     }
 

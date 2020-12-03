@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -44,7 +43,7 @@ class EditaListaActivity: AppCompatActivity(){
 
         lV = findViewById(R.id.itemList1)
         tV = findViewById(R.id.listName1)
-        option = findViewById(R.id.sItemUnit) as Spinner
+        option = findViewById(R.id.el_sItemUnit) as Spinner
         bAddProduto = findViewById(R.id.buttonAddItem)
         lista2.addProduto(p1)
         lista2.addProduto(p2)

@@ -20,47 +20,93 @@ class EditaProdutoActivity : AppCompatActivity() {
     lateinit var productList : ArrayList<Produto>
     lateinit var categoryList : ArrayList<Categoria>
     lateinit var unitList : ArrayList<Unidade>
+    var pPos : Int = -1
 
     override fun onResume() {
         super.onResume()
 
-        Log.i("DEBUG_EditProd", "onResume: EditarProdutoAcitivty")
-        Log.i("DEBUG_EditProd", "ProdListSize: ${productList.size}")
 
+        val intent = this.intent
+        categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
+        unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
 
         val listview = findViewById<ListView>(R.id.ep_lvProdutos)
         listview.adapter = produtoAdapter(productList,this)
+
+        listview.setOnItemClickListener { parent, view, position, id ->
+            Log.i("DEBUG_EditProduto","clicked on item, position: $position")
+            setContentView(R.layout.edita_single_produto)
+            pPos = position
+            atualizaSingleProdutoVista()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edita_produto)
 
+        //o product list tem de ser inicializado no onCreate e nao pode ser no  onResume, porque ao criar um produto, este vai ser modificado, ou seja
+        //se voltar a iniciar pelo que recebeu por intent, vai ficar desatualizado. Tem de inicializar por aqui uma vez quando a atividade começa, e outra vez pelo onActivity result
+        productList  = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+/*
         val intent = this.intent
         productList  = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+        categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
+        unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
+
 
         Log.i("DEBUG_EditProd", "onCreate: EditarProdutoAcitivty")
         Log.i("DEBUG_EditProd", "ProdListSize: ${productList.size}")
 
         val lv = findViewById<ListView>(R.id.ep_lvProdutos)
         lv.setOnItemClickListener { parent, view, position, id ->
-            categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
-            unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
             Log.i("DEBUG_EditProduto","clicked on item, position: $position")
             setContentView(R.layout.edita_single_produto)
-            atualizaSingleProduto(position)
+            pPos = position
+            atualizaSingleProdutoVista()
         }
+        */
     }
 
-    private fun atualizaSingleProduto(index : Int) {
+    private fun atualizaSingleProdutoVista() {
         val et_Name = findViewById<EditText>(R.id.ep_etProductName)
         val et_Brand = findViewById<EditText>(R.id.ep_etProductBrand)
 
-        var produtoEditar = productList[index]
-
+        var produtoEditar = productList[pPos]
+        var pUnitIndex : Int = -1
+        var pCategoryIndex : Int = -1
+        var counter : Int = 0
         et_Name.setText(produtoEditar.nome)
         et_Brand.setText(produtoEditar.marca)
 
+        //por unidades e categoria no spinner
+        //descobrir qual a unidade e categoria set para o produto e po-las como o default escolhido
+
+        var s_Unit = findViewById<Spinner>(R.id.ep_sUnit)
+        var s_Category = findViewById<Spinner>(R.id.ep_sCategory)
+        var unidades : ArrayList<String> = arrayListOf("N/A")
+        var categorias : ArrayList<String> = arrayListOf("N/A")
+
+        for(unidade in unitList){
+            unidades.add(unidade.nome)
+            if(unidade == produtoEditar.unidade)
+                pUnitIndex = counter
+            counter++
+        }
+        counter = 0
+
+        for(categoria in categoryList){
+            categorias.add(categoria.nome)
+            if(categoria == produtoEditar.categoria)
+                pCategoryIndex = counter
+            counter++
+        }
+        counter = 0
+
+        s_Unit.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,unidades)
+        s_Category.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,categorias)
+        s_Unit.setSelection(pUnitIndex+1)
+        s_Category.setSelection(pCategoryIndex+1)
     }
 
     private class produtoAdapter (pl : ArrayList<Produto>, myContext : Context) : BaseAdapter()
@@ -104,6 +150,8 @@ class EditaProdutoActivity : AppCompatActivity() {
     {
         val intent = Intent(this, CriarProdutoActivity::class.java)
         intent.putExtra("listaProdutos", productList)
+        intent.putExtra("listaCategorias", categoryList)
+        intent.putExtra("listaUnidades", unitList)
         startActivityForResult(intent, 203)
     }
 
@@ -142,8 +190,36 @@ class EditaProdutoActivity : AppCompatActivity() {
             unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
             Log.i("DEBUG_EditProduto","clicked on item, position: $position")
             setContentView(R.layout.edita_single_produto)
-            atualizaSingleProduto(position)
+            pPos = position
+            atualizaSingleProdutoVista()
         }
-        
+
+    }
+
+    fun spSave(view: View)
+    {
+        val et_Name = findViewById<EditText>(R.id.ep_etProductName)
+        val et_Brand = findViewById<EditText>(R.id.ep_etProductBrand)
+        //fazer processamento de gravar unidades e categorias
+        val unitIndex = findViewById<Spinner>(R.id.ep_sUnit).selectedItemPosition
+        val categoryIndex = findViewById<Spinner>(R.id.ep_sCategory).selectedItemPosition
+        if(unitIndex == 0)
+            productList[pPos].unidade = null
+        else
+        {
+            productList[pPos].unidade = unitList[unitIndex-1]
+        }
+        if(categoryIndex == 0)
+            productList[pPos].categoria = null
+        else
+        {
+            productList[pPos].categoria = categoryList[categoryIndex-1]
+        }
+
+
+        productList[pPos].nome = et_Name.text.toString()
+        productList[pPos].marca = et_Brand.text.toString()
+
+        spBack(view)
     }
 }

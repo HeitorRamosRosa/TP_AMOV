@@ -11,21 +11,26 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import pt.isec.supraindustries.tp_amov.Data.Categoria
+import pt.isec.supraindustries.tp_amov.Data.Lista
 import pt.isec.supraindustries.tp_amov.Data.Produto
 import pt.isec.supraindustries.tp_amov.Data.Unidade
 import pt.isec.supraindustries.tp_amov.R
 
 class CriarListaActivity : AppCompatActivity() {
 
-    lateinit var option : Spinner
-    lateinit var result : TextView
 
     lateinit var productList : ArrayList<Produto>
+    lateinit var categoryList : ArrayList<Categoria>
+    lateinit var unitList : ArrayList<Unidade>
+
+    var tempLista : Lista = Lista("temp")
 
     override fun onResume() {
         super.onResume()
         val intent = this.intent
         productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+        categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
+        unitList = intent.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
         Log.i("DEBUG","onResume_CriarListaActivity:\nproduct list initialized. Size: ${productList.size}")
         atualizaSpinner()
     }
@@ -33,27 +38,13 @@ class CriarListaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_lista)
-        option = findViewById<Spinner>(R.id.sItemProduto)
-        result = findViewById<TextView>(R.id.itemsListados)
-        var options = arrayOf("");
-
-        option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
-
-        option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                result.text = options.toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                result.text = "Please select an item."
-            }
-        }
     }
 
     fun onCriarProduto(view: View){
         val intent = Intent(this, CriarProdutoActivity::class.java)
         intent.putExtra("listaProdutos", productList)
+        intent.putExtra("listaCategorias", categoryList)
+        intent.putExtra("listaUnidades", unitList)
         startActivityForResult(intent,103)
     }
 
@@ -88,6 +79,10 @@ class CriarListaActivity : AppCompatActivity() {
 
         spinner.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,pNomes)
 
+    }
+
+    fun addItem(view: View)
+    {
 
     }
 }
