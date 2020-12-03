@@ -23,63 +23,59 @@
         android:maxLines="1"
         android:textSize="20sp"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/constraintL1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvQtAdd"
-            app:layout_constraintTop_toTopOf="@id/constraintL1"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintL1"
-            android:text="Item:"
-            android:textSize="24sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Qt"
-            android:textSize="24sp"
-            app:layout_constraintLeft_toRightOf="@id/tvQtAdd"
-            app:layout_constraintTop_toTopOf="@+id/constraintL1"
-            android:layout_marginLeft="85sp"
-            />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     <LinearLayout
-        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        >
+        android:layout_marginTop="12sp">
 
-        <Spinner
-            android:id="@+id/sItemProduto"
-            android:layout_width="120sp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:padding="20sp"/>
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-        <EditText
-            android:id="@+id/eItemQuantity"
-            android:inputType="number"
-            android:layout_width="120sp"
+            <TextView
+                android:id="@+id/tvQtAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_product"
+                android:textSize="24sp"/>
+            <Spinner
+                android:id="@+id/sItemProduto"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:padding="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:textSize="18sp"
-            android:layout_gravity="right"
-            android:padding="20sp"
-            />
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_quantity"
+                android:textSize="24sp"/>
+            <EditText
+                android:id="@+id/eItemQuantity"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textSize="18sp"
+                />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="12sp">
 
         <Button
             android:layout_width="wrap_content"
@@ -87,7 +83,7 @@
             android:text="@string/buttonAdd"
             android:layout_weight="1"
             android:layout_margin="5sp"
-            />
+            android:onClick="addItem"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,10 +101,9 @@
         android:textSize="24sp" />
 
 
-    <TextView
-        android:id="@+id/itemsListados"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"/>
+        android:id="@+id/cl_sItemsInList"/>
 
 </LinearLayout>

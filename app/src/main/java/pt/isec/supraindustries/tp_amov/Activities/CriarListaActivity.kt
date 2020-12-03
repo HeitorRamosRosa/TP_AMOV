@@ -11,6 +11,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import pt.isec.supraindustries.tp_amov.Data.Categoria
+import pt.isec.supraindustries.tp_amov.Data.Lista
 import pt.isec.supraindustries.tp_amov.Data.Produto
 import pt.isec.supraindustries.tp_amov.Data.Unidade
 import pt.isec.supraindustries.tp_amov.R
@@ -23,6 +24,8 @@ class CriarListaActivity : AppCompatActivity() {
     lateinit var productList : ArrayList<Produto>
     lateinit var categoryList : ArrayList<Categoria>
     lateinit var unitList : ArrayList<Unidade>
+
+    var tempLista : Lista = Lista("temp")
 
     override fun onResume() {
         super.onResume()
@@ -53,7 +56,6 @@ class CriarListaActivity : AppCompatActivity() {
                 result.text = "Please select an item."
             }
         }
-        //
     }
 
     fun onCriarProduto(view: View){
@@ -95,5 +97,11 @@ class CriarListaActivity : AppCompatActivity() {
 
         spinner.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,pNomes)
 
+    }
+
+    fun addItem(view: View)
+    {
+        
+        tempLista.addProduto()
     }
 }
