@@ -40,22 +40,20 @@ class EditaListaActivity: AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edita_lista)
 
-
-        lV = findViewById(R.id.itemList1)
-        tV = findViewById(R.id.listName1)
-        option = findViewById(R.id.el_sItemUnit) as Spinner
-        bAddProduto = findViewById(R.id.buttonAddItem)
-        lista2.addProduto(p1)
-        lista2.addProduto(p2)
-        lVA = lVAdapter(this)
-        lV.adapter = lVA
         productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
         lists = intent.getSerializableExtra("lists") as ArrayList<Lista>
         posList = intent.getSerializableExtra("posList") as Int
         lista = lists[posList]
 
+        lV = findViewById(R.id.itemList1)
+        tV = findViewById(R.id.listName1)
+        option = findViewById(R.id.el_sItemUnit) as Spinner
+        bAddProduto = findViewById(R.id.buttonAddItem)
+        lVA = lVAdapter(this)
+        lV.adapter = lVA
+
         lV.setOnItemClickListener { parent, view, position, id ->
-            lista.produtoList.removeAt(position)
+            lista.lista.remove(productList.get(position))
             lVA.notifyDataSetChanged()
         }
 
@@ -91,11 +89,11 @@ class EditaListaActivity: AppCompatActivity(){
         }
 
         override fun getCount(): Int {
-            return lista.produtoList.size
+            return lista.lista.size
         }
 
-        override fun getItem(position: Int): Any {
-            return lista.produtoList?.get(position)?.toString()!!
+        override fun getItem(position: Int): Int? {
+            return lista.lista[position]
         }
 
         override fun getItemId(position: Int): Long {
@@ -104,13 +102,13 @@ class EditaListaActivity: AppCompatActivity(){
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val textView = TextView(mContext)
-            textView.text = lista.produtoList[position].toString()
+            textView.text = lista.lista[position].toString()
             return textView
         }
 
     }
     fun onAddButtonClicked(view: View){
-        lista.produtoList.add(productList[sPos])
+        lista.lista.set(productList[sPos],1)
         lVA.notifyDataSetChanged()
     }
 
@@ -124,9 +122,6 @@ class EditaListaActivity: AppCompatActivity(){
 
         val marca = findViewById<EditText>(R.id.etProductBrand).text.toString()
         val notas = findViewById<EditText>(R.id.etProductNotes).text.toString()
-
-        var temp = Produto(nome, marca, null, notas)
-        productList.add(temp)
 
         val returnIntent = this.intent
         returnIntent.putExtra("listaProdutos",productList)

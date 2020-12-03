@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import pt.isec.supraindustries.tp_amov.Activities.*
 import pt.isec.supraindustries.tp_amov.Data.Categoria
 import pt.isec.supraindustries.tp_amov.Data.Lista
@@ -66,10 +67,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onMostrarListas(view: View){
-        val intent = Intent(this, MostrarListasActivity::class.java)
-        intent.putExtra("listaProdutos",productList)
-        intent.putExtra("lists",lists)
-        startActivityForResult(intent, 104)
+        var temp : Lista
+        temp = Lista("test1")
+        productList.add(Produto("k1"))
+        productList.add(Produto("k2"))
+        productList.add(Produto("k3"))
+        temp.addProduto(productList[0],1)
+        temp.addProduto(productList[1],1)
+        temp.addProduto(productList[2],1)
+
+        lists.add(temp)
+        if(lists.isEmpty() == true){
+            Toast.makeText(this, "There are no lists to show yet!", Toast.LENGTH_SHORT).show()
+        }else{
+            val intent = Intent(this, MostrarListasActivity::class.java)
+            intent.putExtra("listaProdutos",productList)
+            intent.putExtra("lists",lists)
+            startActivityForResult(intent, 104)
+        }
     }
 
     fun onEditarUnits(view: View){

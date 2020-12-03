@@ -35,9 +35,9 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mostrar_listas)
 
-        arrayListas = arrayListOf(Lista("Lista0"),Lista("Lista1"),Lista("Lista2"),Lista("Lista3"),Lista("Lista4"))
         productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
         lists = intent.getSerializableExtra("lists") as ArrayList<Lista>
+        arrayListas = lists
         r = findViewById(R.id.itemList)
         removeButton = findViewById(R.id.removeButton)
         removeEt = findViewById(R.id.removeEt)
