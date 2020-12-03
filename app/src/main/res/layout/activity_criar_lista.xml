@@ -9,19 +9,36 @@
     android:padding="32dp"
     tools:context=".Activities.CriarListaActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/listNew"
-        android:textSize="24sp" />
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/listNew"
+                android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/nomeLista"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/listName"
-        android:maxLines="1"
-        android:textSize="20sp"/>
+            <EditText
+                android:id="@+id/nomeLista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/listName"
+                android:maxLines="1"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/b_save_list"
+            android:layout_gravity="center"
+            android:onClick="SaveList"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginRight="12sp"
             android:layout_weight="1">
 
             <TextView
@@ -40,34 +58,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_product"
-                android:textSize="24sp"/>
+                android:textSize="24sp" />
             <Spinner
                 android:id="@+id/sItemProduto"
-                android:layout_width="120sp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:padding="20sp"/>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="2">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_quantity"
                 android:textSize="24sp"/>
+
             <EditText
-                android:id="@+id/eItemQuantity"
-                android:inputType="number"
+                android:id="@+id/cl_etItemQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:maxLines="1"
-                android:textSize="18sp"
-                />
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -100,10 +119,10 @@
         android:text="@string/tvItemsInList"
         android:textSize="24sp" />
 
-
-    <Spinner
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cl_sItemsInList"/>
+        android:id="@+id/cl_lvItems"
+        />
 
 </LinearLayout>

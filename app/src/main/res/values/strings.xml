@@ -66,4 +66,5 @@
     <string name="b_Back">Back</string>
     <string name="tv_product">Product:</string>
     <string name="tv_quantity">Quantity:</string>
+    <string name="b_save_list">Save List</string>
 </resources>

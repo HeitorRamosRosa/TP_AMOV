@@ -25,7 +25,6 @@ class EditaProdutoActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-
         val intent = this.intent
         categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
         unitList = intent.getSerializableExtra("listaUnidades")as ArrayList<Unidade>
@@ -137,7 +136,6 @@ class EditaProdutoActivity : AppCompatActivity() {
             Log.i("DEBUG_CREATE_UNIT","Position on row: ${position}")
             val productName = row.findViewById<TextView>(R.id.row_tvProductName)
             val productBrand= row.findViewById<TextView>(R.id.row_tvProductBrand)
-            var temp = productList[position]
             productName.text = productList[position].nome
             productBrand.text = productList[position].marca
 

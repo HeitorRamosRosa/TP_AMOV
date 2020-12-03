@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
     var unitList = ArrayList<Unidade>(0)
     var categoryList = ArrayList<Categoria>(0)
     var productList = ArrayList<Produto>(0)
-    var lists = ArrayList<Lista>(0)
+    var comprasList = ArrayList<Lista>(0)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -63,7 +64,8 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("listaProdutos",productList)
         intent.putExtra("listaCategorias",categoryList)
         intent.putExtra("listaUnidades",unitList)
-        startActivityForResult(intent, 103)
+        intent.putExtra("listaCompras",comprasList)
+        startActivityForResult(intent, 105)
     }
 
     fun onMostrarListas(view: View){
@@ -76,13 +78,13 @@ class MainActivity : AppCompatActivity() {
         temp.addProduto(productList[1],1)
         temp.addProduto(productList[2],1)
 
-        lists.add(temp)
-        if(lists.isEmpty() == true){
+        comprasList.add(temp)
+        if(comprasList.isEmpty() == true){
             Toast.makeText(this, "There are no lists to show yet!", Toast.LENGTH_SHORT).show()
         }else{
             val intent = Intent(this, MostrarListasActivity::class.java)
             intent.putExtra("listaProdutos",productList)
-            intent.putExtra("lists",lists)
+            intent.putExtra("lists",comprasList)
             startActivityForResult(intent, 104)
         }
     }
@@ -131,7 +133,6 @@ class MainActivity : AppCompatActivity() {
             if(resultCode == Activity.RESULT_OK)
             {
                 productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
-
                 Log.i("DEBUG","Getting Lista Produtos. Size: ${productList.size}")
             }
         }
@@ -140,8 +141,17 @@ class MainActivity : AppCompatActivity() {
             if(resultCode == Activity.RESULT_OK)
             {
                 productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
-                lists = data?.getSerializableExtra("lists") as ArrayList<Lista>
-                Log.i("DEBUG","Getting produtos or lists. Size: ${productList.size} && ${lists.size}")
+                comprasList = data?.getSerializableExtra("lists") as ArrayList<Lista>
+                Log.i("DEBUG","Getting produtos or lists. Size: ${productList.size} && ${comprasList.size}")
+            }
+        }
+        if(requestCode==105) //atualiza lista de listas e productlist
+        {
+            if(resultCode == Activity.RESULT_OK)
+            {
+                productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+                comprasList = data?.getSerializableExtra("listaCompras") as ArrayList<Lista>
+                Log.i("DEBUG","Getting Lista Produtos. Size: ${productList.size}")
             }
         }
     }
