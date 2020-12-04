@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -139,15 +140,14 @@ class EditaListaActivity: AppCompatActivity(){
 
     fun Save(view: View)
     {
-        val nome = findViewById<EditText>(R.id.etProductName).text.toString()
-        if(nome.isEmpty()){
-            Toast.makeText(this, "Fill the mandatory fields", Toast.LENGTH_SHORT).show()
-            return
+        var i = 0
+        while(i < tempProductList.size){
+            lista.lista.clear()
+            lista.lista.set(tempProductList[i],tempQtList[i])
+            i = i + 1
         }
-
-        val marca = findViewById<EditText>(R.id.etProductBrand).text.toString()
-        val notas = findViewById<EditText>(R.id.etProductNotes).text.toString()
-
+        Log.i("hehehe", "templist size:{${tempProductList.size}} ")
+        lists[posList] = lista
         val returnIntent = this.intent
         returnIntent.putExtra("listaProdutos",productList)
         returnIntent.putExtra("lists",lists)

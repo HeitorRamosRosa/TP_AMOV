@@ -81,7 +81,7 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
         intent.putExtra("listaProdutos",productList)
         intent.putExtra("lists",lists)
         intent.putExtra("posList",pos)
-        startActivityForResult(intent, 104)
+        startActivityForResult(intent, 105)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -93,7 +93,7 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
             {
                 productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
                 lists = data?.getSerializableExtra("lists") as ArrayList<Lista>
-                Log.i("DEBUG","Getting produtos or lists. Size: ${productList.size} && ${lists.size}")
+                Log.i("DEBUGshowlist","Getting produtos or lists. Size: ${productList.size} && ${lists[0].lista.size}")
             }
         }
     }

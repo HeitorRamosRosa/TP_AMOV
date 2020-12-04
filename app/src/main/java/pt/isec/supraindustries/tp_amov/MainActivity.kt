@@ -69,16 +69,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onMostrarListas(view: View){
-        var temp : Lista
-        temp = Lista("test1")
-        productList.add(Produto("k1"))
-        productList.add(Produto("k2"))
-        productList.add(Produto("k3"))
-        temp.addProduto(productList[0],1)
-        temp.addProduto(productList[1],1)
-        temp.addProduto(productList[2],1)
-
-        comprasList.add(temp)
         if(comprasList.isEmpty() == true){
             Toast.makeText(this, "There are no lists to show yet!", Toast.LENGTH_SHORT).show()
         }else{
