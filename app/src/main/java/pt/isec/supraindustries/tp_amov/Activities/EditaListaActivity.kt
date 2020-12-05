@@ -124,7 +124,11 @@ class EditaListaActivity: AppCompatActivity(){
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val textView = TextView(mContext)
-            textView.text = tempProductList[position].toString() + "qt: " + tempQtList[position]
+            if(tempProductList[position].unidade == null){
+                textView.text = tempProductList[position].toString() + " qt: " + tempQtList[position]
+            }else{
+                textView.text = tempProductList[position].toString() + " qt: " + tempQtList[position] + tempProductList[position].unidade!!.simbolo
+            }
             return textView
         }
 

@@ -83,6 +83,10 @@ class CriarListaActivity : AppCompatActivity() {
             iBrand.text = pList[position].marca
             iQuantity.text = qList[position].toString()
 
+            if(pList[position].unidade != null){
+                iQuantity.text = pList[position].unidade!!.simbolo
+            }
+
             return row
         }
     }
