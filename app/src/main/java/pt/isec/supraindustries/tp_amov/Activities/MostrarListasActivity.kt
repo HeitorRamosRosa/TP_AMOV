@@ -49,13 +49,6 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        val intent = this.intent
-        productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
-        lists = intent.getSerializableExtra("lists") as ArrayList<Lista>
-        Log.i("DEBUG","onResume ShowListActivity")
-    }
 
     fun onRemoveButtonClicked(view: View) {
         if(!removeEt.text.toString().isEmpty()){
@@ -93,14 +86,14 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
             {
                 productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
                 lists = data?.getSerializableExtra("lists") as ArrayList<Lista>
-                Log.i("DEBUGshowlist","Getting produtos or lists. Size: ${productList.size} && ${lists[0].lista.size}")
+                Log.i("DEBUG_MostraLista","Getting produtos or lists. Size: ${productList.size} && ${lists[0].lista.size}")
             }
         }
     }
 
     fun Save(view: View)
     {
-
+        Log.i("DEBUG_MostraLista","Save: Sending produtos and lists. Size: ${productList.size} && ${lists[0].lista.size}")
         val returnIntent = this.intent
         returnIntent.putExtra("listaProdutos",productList)
         returnIntent.putExtra("lists",lists)

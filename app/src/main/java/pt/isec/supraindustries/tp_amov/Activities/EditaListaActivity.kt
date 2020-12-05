@@ -41,6 +41,7 @@ class EditaListaActivity: AppCompatActivity(){
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.i("debugEditaListaActivity", "onCreate:")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edita_lista)
         tempProductList = ArrayList<Produto>(0)
@@ -65,9 +66,14 @@ class EditaListaActivity: AppCompatActivity(){
         lV.adapter = lVA
 
         lV.setOnItemClickListener { parent, view, position, id ->
-            lista.lista.remove(tempProductList.get(position))
-            tempProductList.removeAt(position)
-            tempQtList.removeAt(position)
+            if(tempQtList.get(position) == 1){
+                lista.lista.remove(tempProductList.get(position))
+                tempProductList.removeAt(position)
+                tempQtList.removeAt(position)
+            }else{
+                lista.lista.set(tempProductList[position],tempQtList[position] - 1)
+                tempQtList[position] = tempQtList[position] - 1
+            }
 
             lVA.notifyDataSetChanged()
         }
@@ -118,7 +124,7 @@ class EditaListaActivity: AppCompatActivity(){
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val textView = TextView(mContext)
-            textView.text = tempProductList[position].toString()
+            textView.text = tempProductList[position].toString() + "qt: " + tempQtList[position]
             return textView
         }
 
@@ -135,18 +141,23 @@ class EditaListaActivity: AppCompatActivity(){
             tempProductList.add((productList[sPos]))
             tempQtList.add(x)
             lVA.notifyDataSetChanged()
+            Log.i("DEBUG_EditaLista", "added p ---- templist size:{${tempProductList.size}} ")
         }
     }
 
     fun Save(view: View)
     {
         var i = 0
+        lista.lista.clear()
         while(i < tempProductList.size){
-            lista.lista.clear()
-            lista.lista.set(tempProductList[i],tempQtList[i])
+            if(lista.lista.get(tempProductList[i]) != null){
+                lista.lista.set(tempProductList[i],lista.lista.get(tempProductList[i])!! + tempQtList[i])
+            }else{
+                lista.lista.set(tempProductList[i],tempQtList[i])
+            }
             i = i + 1
         }
-        Log.i("hehehe", "templist size:{${tempProductList.size}} ")
+        Log.i("DEBUG_EditaLista", "templist size:{${tempProductList.size}} ")
         lists[posList] = lista
         val returnIntent = this.intent
         returnIntent.putExtra("listaProdutos",productList)

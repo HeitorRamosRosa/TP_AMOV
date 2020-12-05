@@ -6,6 +6,6 @@ data class Produto(var nome: String, var marca: String="N/A", var unidade: Unida
     var preco: Array<Float> = arrayOf()
 
     override fun toString(): String {
-        return nome +": brand: " + marca + " unit: " + unidade + " category: " + categoria
+        return nome +" | " + marca
     }
 }
