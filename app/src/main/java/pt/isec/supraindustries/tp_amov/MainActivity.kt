@@ -143,10 +143,6 @@ class MainActivity : AppCompatActivity() {
                 comprasList = data?.getSerializableExtra("listaCompras") as ArrayList<Lista>
                 Log.i("DEBUG","OnResult105_ListaProdutos. Size: ${productList.size}")
             }
-            if(resultCode == 666){
-                Log.i("DEBUG","OnResult666")
-                productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
-            }
             /*else if(resultCode == Activity.RESULT_CANCELED)
             {
                 Log.i("DEBUG","OnResult105CANCELED")
