@@ -29,7 +29,6 @@ class CriarListaActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val intent = this.intent
-        productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
         categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
         unitList = intent.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
         comprasList = intent.getSerializableExtra("listaCompras") as ArrayList<Lista>
@@ -91,6 +90,9 @@ class CriarListaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_lista)
+
+        productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+        Log.i("DEBUG","On CriaLista OnCreate: ProductList Size: ${productList.size}")
     }
 
     fun onCriarProduto(view: View){
@@ -150,11 +152,26 @@ class CriarListaActivity : AppCompatActivity() {
 
     fun SaveList(view: View)
     {
+        val listName = findViewById<EditText>(R.id.cl_nomeLista)
+        tempLista.nome = listName.text.toString()
         comprasList.add(tempLista)
         val returnIntent = this.intent
-        intent.putExtra("listaProdutos",productList)
-        intent.putExtra("listaCompras",comprasList)
+        returnIntent.putExtra("listaProdutos",productList)
+        returnIntent.putExtra("listaCompras",comprasList)
         setResult(Activity.RESULT_OK,returnIntent)
         finish()
     }
+
+    override fun onBackPressed() {
+        Log.i("DEBUG","CriaListaOnBackPressed1 productList Size: ${productList.size}")
+        val returnIntent = this.intent
+        returnIntent.putExtra("listaProdutos",productList)
+        returnIntent.putExtra("listaCompras",comprasList)
+        setResult(Activity.RESULT_OK,returnIntent)
+        finish()
+        super.onBackPressed()
+
+        Log.i("DEBUG","CriaListaOnBackPressed2 productList Size: ${productList.size}")
+    }
+
 }

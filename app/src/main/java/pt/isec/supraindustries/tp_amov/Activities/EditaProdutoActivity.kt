@@ -70,6 +70,7 @@ class EditaProdutoActivity : AppCompatActivity() {
     private fun atualizaSingleProdutoVista() {
         val et_Name = findViewById<EditText>(R.id.ep_etProductName)
         val et_Brand = findViewById<EditText>(R.id.ep_etProductBrand)
+        val et_Notes = findViewById<EditText>(R.id.ep_productNotes)
 
         var produtoEditar = productList[pPos]
         var pUnitIndex : Int = -1
@@ -77,6 +78,7 @@ class EditaProdutoActivity : AppCompatActivity() {
         var counter : Int = 0
         et_Name.setText(produtoEditar.nome)
         et_Brand.setText(produtoEditar.marca)
+        et_Notes.setText(produtoEditar.notas)
 
         //por unidades e categoria no spinner
         //descobrir qual a unidade e categoria set para o produto e po-las como o default escolhido
@@ -198,6 +200,8 @@ class EditaProdutoActivity : AppCompatActivity() {
     {
         val et_Name = findViewById<EditText>(R.id.ep_etProductName)
         val et_Brand = findViewById<EditText>(R.id.ep_etProductBrand)
+        val et_Notes = findViewById<EditText>(R.id.ep_productNotes)
+
         //fazer processamento de gravar unidades e categorias
         val unitIndex = findViewById<Spinner>(R.id.ep_sUnit).selectedItemPosition
         val categoryIndex = findViewById<Spinner>(R.id.ep_sCategory).selectedItemPosition
@@ -217,6 +221,7 @@ class EditaProdutoActivity : AppCompatActivity() {
 
         productList[pPos].nome = et_Name.text.toString()
         productList[pPos].marca = et_Brand.text.toString()
+        productList[pPos].notas = et_Notes.text.toString()
 
         spBack(view)
     }

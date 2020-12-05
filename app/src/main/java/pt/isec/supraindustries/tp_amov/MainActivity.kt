@@ -35,10 +35,14 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }*/
-        Log.i("DEGUB_Main", "onCreate: MainActivity")
+        Log.i(TAG, "onCreate: MainActivity")
     }
 
 
+    override fun onResume() {
+        super.onResume()
+        Log.i(TAG, "unidadeLista size: ${unitList.size}")
+    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -102,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         {
             if(resultCode == Activity.RESULT_OK)
             {
-                Log.i("DEBUG_Main","onActivityResult: Getting Lista Unidades")
+                Log.i("DEBUG","Getting Lista Unidades")
                 unitList = data?.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
             }
         }
@@ -110,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         {
             if(resultCode == Activity.RESULT_OK)
             {
-                Log.i("DEBUG_Main","onActivityResult: Getting Lista Categorias")
+                Log.i("DEBUG","Getting Lista Categorias")
                 categoryList = data?.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
             }
         }
@@ -119,7 +123,7 @@ class MainActivity : AppCompatActivity() {
             if(resultCode == Activity.RESULT_OK)
             {
                 productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
-                Log.i("DEBUG_Main","onActivityResult: Getting Lista Produtos 1. Size: ${productList.size}")
+                Log.i("DEBUG","Getting Lista Produtos. Size: ${productList.size}")
             }
         }
         if(requestCode==104) //pode atualizar lists ou productlist
@@ -128,7 +132,7 @@ class MainActivity : AppCompatActivity() {
             {
                 productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
                 comprasList = data?.getSerializableExtra("lists") as ArrayList<Lista>
-                Log.i("DEBUG_Main","onActivityResult: Getting produtos or lists 2. Size: ${productList.size} && ${comprasList[0].lista.size}")
+                Log.i("DEBUG","Getting produtos or lists. Size: ${productList.size} && ${comprasList.size}")
             }
         }
         if(requestCode==105) //atualiza lista de listas e productlist
@@ -137,8 +141,18 @@ class MainActivity : AppCompatActivity() {
             {
                 productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
                 comprasList = data?.getSerializableExtra("listaCompras") as ArrayList<Lista>
-                Log.i("DEBUG_Main","onActivityResult: Getting Lista Produtos 3. Size: ${productList.size}")
+                Log.i("DEBUG","OnResult105_ListaProdutos. Size: ${productList.size}")
             }
+            if(resultCode == 666){
+                Log.i("DEBUG","OnResult666")
+                productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+            }
+            /*else if(resultCode == Activity.RESULT_CANCELED)
+            {
+                Log.i("DEBUG","OnResult105CANCELED")
+                productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+                Log.i("DEBUG","OnResult105CANCELED_ListaProdutos. Size: ${productList.size}")
+            }*/
         }
     }
 
