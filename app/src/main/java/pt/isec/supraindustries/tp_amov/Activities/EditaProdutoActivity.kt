@@ -108,6 +108,8 @@ class EditaProdutoActivity : AppCompatActivity() {
         s_Category.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,categorias)
         s_Unit.setSelection(pUnitIndex+1)
         s_Category.setSelection(pCategoryIndex+1)
+
+
     }
 
     private class produtoAdapter (pl : ArrayList<Produto>, myContext : Context) : BaseAdapter()
@@ -143,7 +145,6 @@ class EditaProdutoActivity : AppCompatActivity() {
 
             return row
         }
-
     }
 
     fun onCriarProduto(view: View)
@@ -225,4 +226,6 @@ class EditaProdutoActivity : AppCompatActivity() {
 
         spBack(view)
     }
+
+    fun addPreco(view: View) {}
 }

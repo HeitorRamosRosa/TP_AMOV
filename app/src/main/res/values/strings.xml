@@ -67,4 +67,6 @@
     <string name="tv_product">Product:</string>
     <string name="tv_quantity">Quantity:</string>
     <string name="b_save_list">Save List</string>
+    <string name="sp_insert_price">Insert Price:</string>
+    <string name="b_add_price">Add Price</string>
 </resources>
