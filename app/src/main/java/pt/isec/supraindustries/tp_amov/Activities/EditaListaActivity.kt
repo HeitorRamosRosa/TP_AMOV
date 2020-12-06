@@ -178,6 +178,8 @@ class EditaListaActivity: AppCompatActivity(){
             tempQtList.add(x)
             lVA.notifyDataSetChanged()
             Log.i("DEBUG_EditaLista", "added p ---- templist size:{${tempProductList.size}} ")
+        }else{
+            Toast.makeText(this, "Please insert a quantity!", Toast.LENGTH_SHORT).show()
         }
     }
 

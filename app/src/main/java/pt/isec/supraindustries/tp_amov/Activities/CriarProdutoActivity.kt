@@ -44,6 +44,10 @@ class CriarProdutoActivity : AppCompatActivity() {
             Toast.makeText(this, "Fill the mandatory fields", Toast.LENGTH_SHORT).show()
             return
         }
+        if(checkExistence(nome,productList) == true){
+            Toast.makeText(this, "There already is a product with that name! Choose another one please.", Toast.LENGTH_SHORT).show()
+            return
+        }
         val marca = findViewById<EditText>(R.id.etProductBrand).text.toString()
         val notas = findViewById<EditText>(R.id.etProductNotes).text.toString()
 
@@ -88,5 +92,15 @@ class CriarProdutoActivity : AppCompatActivity() {
 
     }
 
-
+    fun checkExistence(n: String, a: ArrayList<Produto>): Boolean {
+        var b : Boolean = false
+        var i : Int = 0
+        while(i < a.size){
+            if(n == a[i].nome){
+                b = true;
+            }
+            i++
+        }
+        return b
+    }
 }
