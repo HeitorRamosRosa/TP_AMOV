@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import pt.isec.supraindustries.tp_amov.Data.Categoria
 import pt.isec.supraindustries.tp_amov.Data.Lista
 import pt.isec.supraindustries.tp_amov.Data.Produto
+import pt.isec.supraindustries.tp_amov.Data.Unidade
 import pt.isec.supraindustries.tp_amov.R
 
 class EditaListaActivity: AppCompatActivity(){
@@ -32,6 +34,8 @@ class EditaListaActivity: AppCompatActivity(){
     lateinit var tempQtList : ArrayList<Int>
     lateinit var lists : ArrayList<Lista>
     lateinit var eTQt : EditText
+    lateinit var categoryList : ArrayList<Categoria>
+    lateinit var unitList : ArrayList<Unidade>
     var posList : Int = -1
 
     init{
@@ -50,6 +54,8 @@ class EditaListaActivity: AppCompatActivity(){
         productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
         lists = intent.getSerializableExtra("lists") as ArrayList<Lista>
         posList = intent.getSerializableExtra("posList") as Int
+        categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
+        unitList =  intent.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
         lista = lists[posList]
         eTQt = findViewById(R.id.eItemQuantity)
         lV = findViewById(R.id.itemList1)
@@ -99,7 +105,33 @@ class EditaListaActivity: AppCompatActivity(){
 
     fun onCriarProduto(view: View){
         val intent = Intent(this, CriarProdutoActivity::class.java)
-        startActivity(intent)
+        intent.putExtra("listaProdutos", productList)
+        intent.putExtra("listaCategorias",categoryList)
+        intent.putExtra("listaUnidades",unitList)
+
+        startActivityForResult(intent,106)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==106)
+        {
+            if(resultCode== RESULT_OK){
+                //isto vai levar para o main ecran sem deixar fazer mais nada, dar handle a isto
+                //por exemplo, gravar a lista com o novo item antes de volta
+                //OU, ao acabar de criar produto adiciona-se o produto ao spinner e nao se da "finish(), dando apenas o finish com o result noutra actividade
+
+                productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
+                var pNomes : ArrayList<String> = arrayListOf()
+
+                for(produto in productList){
+                    pNomes.add(produto.nome+"|"+produto.marca)
+                }
+
+                option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,pNomes)
+                Log.i("debugEditaListaActivity","onActivityResult - productList size: ${productList.size}")
+            }
+        }
     }
 
     inner class lVAdapter(context: Context): BaseAdapter() {

@@ -29,6 +29,8 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
     lateinit var r : RecyclerView
     lateinit var productList : ArrayList<Produto>
     lateinit var lists : ArrayList<Lista>
+    lateinit var categoryList : ArrayList<Categoria>
+    lateinit var unitList : ArrayList<Unidade>
     private val m = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +39,8 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
 
         productList = intent.getSerializableExtra("listaProdutos") as ArrayList<Produto>
         lists = intent.getSerializableExtra("lists") as ArrayList<Lista>
+        categoryList = intent.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
+        unitList =  intent.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
         arrayListas = lists
         r = findViewById(R.id.itemList)
         removeButton = findViewById(R.id.removeButton)
@@ -74,6 +78,8 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
         intent.putExtra("listaProdutos",productList)
         intent.putExtra("lists",lists)
         intent.putExtra("posList",pos)
+        intent.putExtra("listaCategorias",categoryList)
+        intent.putExtra("listaUnidades",unitList)
         startActivityForResult(intent, 105)
     }
 

@@ -75,6 +75,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MostrarListasActivity::class.java)
             intent.putExtra("listaProdutos",productList)
             intent.putExtra("lists",comprasList)
+            intent.putExtra("listaCategorias",categoryList)
+            intent.putExtra("listaUnidades",unitList)
             startActivityForResult(intent, 104)
         }
     }
@@ -132,6 +134,9 @@ class MainActivity : AppCompatActivity() {
             {
                 productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
                 comprasList = data?.getSerializableExtra("lists") as ArrayList<Lista>
+                categoryList = data?.getSerializableExtra("listaCategorias") as ArrayList<Categoria>
+                unitList = data?.getSerializableExtra("listaUnidades") as ArrayList<Unidade>
+
                 Log.i("DEBUG","Getting produtos or lists. Size: ${productList.size} && ${comprasList.size}")
             }
         }
