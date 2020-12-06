@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import org.w3c.dom.Text
 import pt.isec.supraindustries.tp_amov.Data.Categoria
 import pt.isec.supraindustries.tp_amov.Data.Unidade
 import pt.isec.supraindustries.tp_amov.R
@@ -38,6 +39,8 @@ class EditaProdutoActivity : AppCompatActivity() {
             pPos = position
             atualizaSingleProdutoVista()
         }
+
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,7 +112,13 @@ class EditaProdutoActivity : AppCompatActivity() {
         s_Unit.setSelection(pUnitIndex+1)
         s_Category.setSelection(pCategoryIndex+1)
 
+        atualizaPrecos()
 
+        val lv = findViewById<ListView>(R.id.ep_lvPrecos)
+        lv.setOnItemClickListener { parent, view, position, id ->
+            productList[pPos].remPreco(position)
+            atualizaPrecos()
+        }
     }
 
     private class produtoAdapter (pl : ArrayList<Produto>, myContext : Context) : BaseAdapter()
@@ -219,7 +228,6 @@ class EditaProdutoActivity : AppCompatActivity() {
             productList[pPos].categoria = categoryList[categoryIndex-1]
         }
 
-
         productList[pPos].nome = et_Name.text.toString()
         productList[pPos].marca = et_Brand.text.toString()
         productList[pPos].notas = et_Notes.text.toString()
@@ -227,5 +235,50 @@ class EditaProdutoActivity : AppCompatActivity() {
         spBack(view)
     }
 
-    fun addPreco(view: View) {}
+    fun addPreco(view: View)
+    {
+        val etPreco = findViewById<EditText>(R.id.ed_Preco)
+        if(etPreco.text.isEmpty()){
+            Toast.makeText(this,"Insert price",Toast.LENGTH_SHORT).show()
+            return
+        }
+        val pPreco = etPreco.text.toString().toFloat()
+        Log.i("DEBUG","Precof: ${pPreco}")
+        productList[pPos].addPreco(pPreco)
+        atualizaPrecos()
+    }
+
+    fun atualizaPrecos(){
+        val lv = findViewById<ListView>(R.id.ep_lvPrecos)
+        lv.adapter = precoAdapter(productList[pPos],this)
+    }
+
+    private class precoAdapter(produto: Produto, myContext : Context): BaseAdapter() {
+        val p = produto
+        val  context = myContext
+        override fun getCount(): Int {
+            Log.i("DEBUG","SIIZE: ${p.precos.size}")
+            return p.precos.size
+        }
+
+        override fun getItem(p0: Int): Any {
+            return "TEST STRING"
+        }
+
+        override fun getItemId(p0: Int): Long {
+            return p0.toLong()
+        }
+
+        override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
+            val layoutInflater = LayoutInflater.from(context)
+            val row = layoutInflater.inflate(R.layout.row_preco, viewGroup, false)
+
+            val pPrice = row.findViewById<TextView>(R.id.row_price)
+
+            pPrice.setText(p.precos[position].toString())
+
+            return row
+        }
+
+    }
 }

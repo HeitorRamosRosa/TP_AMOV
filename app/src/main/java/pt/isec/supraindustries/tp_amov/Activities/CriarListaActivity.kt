@@ -35,6 +35,7 @@ class CriarListaActivity : AppCompatActivity() {
         Log.i("DEBUG","onResume_CriarListaActivity:\nComprasSize: ${comprasList.size}")
         atualizaSpinner()
         atualizaListaItems()
+
     }
 
     private fun atualizaListaItems() {
@@ -71,7 +72,7 @@ class CriarListaActivity : AppCompatActivity() {
             return p0.toLong()
         }
 
-        override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup??): View {
+        override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
             val row = layoutInflater.inflate(R.layout.row_produto_quantidade, viewGroup, false)
 
@@ -167,7 +168,6 @@ class CriarListaActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        Log.i("DEBUG","CriaListaOnBackPressed1 productList Size: ${productList.size}")
         val returnIntent = this.intent
         returnIntent.putExtra("listaProdutos",productList)
         returnIntent.putExtra("listaCompras",comprasList)
@@ -175,7 +175,6 @@ class CriarListaActivity : AppCompatActivity() {
         finish()
         super.onBackPressed()
 
-        Log.i("DEBUG","CriaListaOnBackPressed2 productList Size: ${productList.size}")
     }
 
 }
