@@ -69,8 +69,6 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
     
 
     override fun onItemClick(pos: Int) {
-        Toast.makeText(this, "to new screen $pos", Toast.LENGTH_SHORT).show()
-        //val clickedItem : Lista = arrayListas[pos]
         r.apply {
             adapter?.notifyItemChanged(pos)
         }
@@ -92,14 +90,14 @@ class   MostrarListasActivity : AppCompatActivity(), ListAdapter.OnItemClickList
             {
                 productList = data?.getSerializableExtra("listaProdutos") as ArrayList<Produto>
                 lists = data?.getSerializableExtra("lists") as ArrayList<Lista>
-                Log.i("DEBUG_MostraLista","Getting produtos or lists. Size: ${productList.size} && ${lists[0].lista.size}")
+                Log.i("DEBUG_MostraLista","Getting produtos or lists. Size: ${productList.size} && ")
             }
         }
     }
 
     fun Save(view: View)
     {
-        Log.i("DEBUG_MostraLista","Save: Sending produtos and lists. Size: ${productList.size} && ${lists[0].lista.size}")
+        Log.i("DEBUG_MostraLista","Save: Sending produtos and lists. Size: ${productList.size} && ")
         val returnIntent = this.intent
         returnIntent.putExtra("listaProdutos",productList)
         returnIntent.putExtra("lists",lists)

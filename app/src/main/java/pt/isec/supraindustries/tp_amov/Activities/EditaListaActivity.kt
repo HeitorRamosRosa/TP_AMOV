@@ -24,9 +24,6 @@ class EditaListaActivity: AppCompatActivity(){
     var sPos : Int = -1
     var lPos = 0;
     lateinit var lista: Lista
-    var p1: Produto
-    var p2: Produto
-    var lista2: Lista
     lateinit var adapter : ArrayAdapter<Produto>
     lateinit var lVA: lVAdapter
     lateinit var productList : ArrayList<Produto>
@@ -38,11 +35,6 @@ class EditaListaActivity: AppCompatActivity(){
     lateinit var unitList : ArrayList<Unidade>
     var posList : Int = -1
 
-    init{
-        lista2 = Lista("TEST")
-        p1 = Produto("bom dia")
-        p2 = Produto("boa tarde")
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i("debugEditaListaActivity", "onCreate:")
